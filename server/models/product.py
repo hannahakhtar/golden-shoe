@@ -16,9 +16,8 @@ class Product(db.Model, BaseModel):
     description = db.Column(db.Text, nullable=True)
     category = db.Column(db.Text, nullable=False)
     price = db.Column(db.Float, nullable=False)
-    in_stock = db.Column(db.Boolean, nullable=False)
+    stock_level = db.Column(db.Integer, nullable=False)
     gender = db.Column(db.Text, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id", ondelete="CASCADE"))
 
     wishlist = db.relationship('Wishlist', backref='product', cascade="all, delete")
     order_history = db.relationship('OrderHistory', backref='product', cascade="all, delete")

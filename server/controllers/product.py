@@ -6,7 +6,7 @@ from decorators.secure_route import secure_route
 
 product_schema = ProductSchema()
 
-router = Blueprint(__name__, "product")
+router = Blueprint('product', __name__)
 
 @router.route("/products", methods=["GET"])
 def get_all_products():

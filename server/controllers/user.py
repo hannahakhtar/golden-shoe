@@ -6,7 +6,7 @@ from decorators.secure_route import secure_route
 
 user_schema = UserSchema()
 
-router = Blueprint(__name__, "users")
+router = Blueprint('users', __name__)
 
 @router.route("/users", methods=["GET"])
 def get_users():
@@ -66,7 +66,7 @@ def remove_user(user_id):
     user = User.query.get(user_id)    
 
     if user != g.current_user:
-        return {'errors': 'Sorry - you can not delete this user'}, 402
+        return {'errors': 'Sorry - you can only delete your account when logged in.'}, 402
 
     user.remove()
     return { "message": "User deleted successfully" }, 200

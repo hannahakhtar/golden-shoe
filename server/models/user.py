@@ -6,7 +6,6 @@ from sqlalchemy.ext.hybrid import hybrid_property
 import jwt
 from datetime import *
 from config.environment import secret
-from models.product import Product
 
 class User(db.Model, BaseModel):
 
@@ -18,10 +17,8 @@ class User(db.Model, BaseModel):
     first_name = db.Column(db.String(128), nullable=False)
     last_name = db.Column(db.String(128), nullable=False)
     image = db.Column(db.Text, nullable=True)
-    location = db.Column(db.Text, nullable=False)
 
     wishlist = db.relationship('Wishlist', backref='users', cascade="all, delete")
-    product = db.relationship('Product', backref='user', cascade="all, delete")
     order_history = db.relationship('OrderHistory', backref='users', cascade="all, delete")
 
     @hybrid_property
@@ -40,11 +37,11 @@ class User(db.Model, BaseModel):
             "iat": datetime.utcnow(),
             "exp": datetime.utcnow() + timedelta(days=1)
         } 
-        print(jwt)
-        print(type(jwt))
-        print("after 43")
-        print(jwt.encode)
-        print("dfgdfg")
+        # print(jwt)
+        # print(type(jwt))
+        # print("after 43")
+        # print(jwt.encode)
+        # print("dfgdfg")
         token = jwt.encode(payload, secret, 'HS256')
         return token
 

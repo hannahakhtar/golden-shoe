@@ -3,12 +3,12 @@ from models.wishlist import Wishlist
 from models.product import Product
 from serializers.wishlist import WishlistSchema, SimpleWishlistSchema
 from marshmallow.exceptions import ValidationError
-# from decorators.secure_route import secure_route
+from decorators.secure_route import secure_route
 
 wishlist_schema = WishlistSchema()
 simple_wishlist_schema = SimpleWishlistSchema()
 
-router = Blueprint(__name__, "wishlist")
+router = Blueprint('wishlist', __name__)
 
 @router.route('/wishlist/<int:user_id>', methods=["GET"])
 @secure_route

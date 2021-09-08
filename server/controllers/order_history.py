@@ -8,7 +8,7 @@ from decorators.secure_route import secure_route
 order_history_schema = OrderHistorySchema()
 simple_order_history_schema = SimpleOrderHistorySchema()
 
-router = Blueprint(__name__, "order_history")
+router = Blueprint('order_history', __name__)
 
 # @router.route('/order-history', methods=["GET"])
 # def get_all_users_order_history():
