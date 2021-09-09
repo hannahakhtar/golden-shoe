@@ -35,7 +35,7 @@ def login():
     if not user:
         return { 'message': 'No user found for this email' }
     if not user.validate_password(request.json['password']):
-        return { 'message' : 'You are not authorized' }, 402
+        return { 'message' : 'You are not authorized' }, 401
     token = user.generate_token()
     return { 'token': token, 'message': 'Welcome back!' }  
 
@@ -46,7 +46,7 @@ def edit_user(user_id):
     user_dictionary = request.json
 
     if user_to_update != g.current_user:
-        return {'errors': 'Sorry - you can not edit this user'}, 402
+        return {'errors': 'Sorry - you can not edit this user'}, 401
 
     try:
         user = user_schema.load(
@@ -66,7 +66,7 @@ def remove_user(user_id):
     user = User.query.get(user_id)    
 
     if user != g.current_user:
-        return {'errors': 'Sorry - you can only delete your account when logged in.'}, 402
+        return {'errors': 'Sorry - you can only delete your account when logged in.'}, 401
 
     user.remove()
     return { "message": "User deleted successfully" }, 200

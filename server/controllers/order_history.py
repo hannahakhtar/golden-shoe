@@ -10,19 +10,14 @@ simple_order_history_schema = SimpleOrderHistorySchema()
 
 router = Blueprint('order_history', __name__)
 
-# @router.route('/order-history', methods=["GET"])
-# def get_all_users_order_history():
-#     orders = OrderHistory.query.all()
-#     return order_history_schema.jsonify(orders, many=True), 200
-
 @router.route('/users/<int:user_id>/order-history', methods=["GET"])
 @secure_route
 def get_all_order_history(user_id):
     orders = OrderHistory.query.filter_by(user_id = user_id)
     if user_id != g.current_user.id:
-        return {'errors': 'Sorry - you can not view this user\'s orders'}, 402
+        return {'errors': 'Sorry - you can not view this user\'s orders'}, 401
     if not orders.first():
-        return {'errors': 'Could not find any orders by this ID'}, 402
+        return {'errors': 'Could not find any orders by this ID'}, 401
     return order_history_schema.jsonify(orders, many=True), 200
 
 @router.route('/users/<int:user_id>/order-history/<int:order_history_id>', methods=["GET"])
@@ -31,16 +26,16 @@ def get_one_order_history(user_id, order_history_id):
     orders = OrderHistory.query.filter_by(user_id = user_id)
     orders = orders.filter_by(id = order_history_id)
     if user_id != g.current_user.id:
-        return {'errors': 'Sorry - you can not view this user\'s orders'}, 402
+        return {'errors': 'Sorry - you can not view this user\'s orders'}, 401
     if not orders.first():
-        return {'errors': 'Could not find an order by this ID'}, 402
+        return {'errors': 'Could not find an order by this ID'}, 401
     return order_history_schema.jsonify(orders, many=True), 200     
 
 @router.route('/users/<int:user_id>/order-history/<int:product_id>', methods=["POST"])
 @secure_route
 def post_order(user_id, product_id):
     if user_id != g.current_user.id:
-        return {'errors': 'Sorry - you do not have access to this'}, 402
+        return {'errors': 'Sorry - you do not have access to this'}, 401
 
     try:
         ordered_item = { 'user_id': user_id, 'product_id': product_id }

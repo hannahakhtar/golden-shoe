@@ -15,14 +15,14 @@ router = Blueprint('wishlist', __name__)
 def get_wishlist_by_id(user_id):
     wishlist = Wishlist.query.filter_by(user_id=user_id)
     if user_id != g.current_user.id:
-        return {'errors': 'Sorry - you do not have access to this'}, 402
+        return {'errors': 'Sorry - you do not have access to this'}, 401
     return wishlist_schema.jsonify(wishlist, many=True), 200
 
 @router.route('/users/<int:user_id>/wishlist/<int:product_id>', methods=["POST"])
 @secure_route
 def all_to_wishlist(user_id, product_id):
     if user_id != g.current_user.id:
-        return {'errors': 'Sorry - you do not have access to this'}, 402
+        return {'errors': 'Sorry - you do not have access to this'}, 401
 
     try:
         wishlist_item = { 'user_id': user_id, 'product_id': product_id }
@@ -39,8 +39,8 @@ def all_to_wishlist(user_id, product_id):
 def remove_wishlist_item(user_id, wishlist_id):
     wishlist_item = Wishlist.query.get(wishlist_id)
     if user_id != g.current_user.id:
-        return {'errors': 'Sorry - you can not delete this item as it is not yours!'}, 402
+        return {'errors': 'Sorry - you can not delete this item as it is not yours!'}, 401
     if not wishlist_item:
-        return {'errors': 'Sorry - could not find that wishlist item'}, 402
+        return {'errors': 'Sorry - could not find that wishlist item'}, 401
     wishlist_item.remove()
     return {"message": "Wishlist item deleted successfully"}, 200

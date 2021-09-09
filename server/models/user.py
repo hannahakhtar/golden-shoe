@@ -6,6 +6,7 @@ from sqlalchemy.ext.hybrid import hybrid_property
 import jwt
 from datetime import *
 from config.environment import secret
+from sqlalchemy.orm import validates
 
 class User(db.Model, BaseModel):
 
@@ -16,10 +17,14 @@ class User(db.Model, BaseModel):
     password_hash = db.Column(db.String(128), nullable=True)
     first_name = db.Column(db.String(128), nullable=False)
     last_name = db.Column(db.String(128), nullable=False)
-    image = db.Column(db.Text, nullable=True)
 
     wishlist = db.relationship('Wishlist', backref='users', cascade="all, delete")
     order_history = db.relationship('OrderHistory', backref='users', cascade="all, delete")
+
+    @validates('email')
+    def validate_email(self, key, address):
+        assert '@' in address, "You must have a valid email address"
+        return address
 
     @hybrid_property
     def password(self):
