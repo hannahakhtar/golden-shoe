@@ -1,4 +1,4 @@
-from main import ma
+from app import ma
 from models.wishlist import Wishlist
 from marshmallow import fields
 

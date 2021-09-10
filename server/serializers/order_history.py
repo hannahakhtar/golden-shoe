@@ -1,4 +1,4 @@
-from main import ma
+from app import ma
 from models.order_history import OrderHistory
 from marshmallow import fields
 
@@ -8,7 +8,7 @@ class OrderHistorySchema(ma.SQLAlchemyAutoSchema):
         load_instance = True
 
     user = fields.Nested('UserSchema')    
-    product = fields.Nested('ProductSchema')
+    products = fields.Nested('ProductSchema', many=True)
 
 class SimpleOrderHistorySchema(ma.SQLAlchemyAutoSchema):
     class Meta: 
@@ -16,4 +16,4 @@ class SimpleOrderHistorySchema(ma.SQLAlchemyAutoSchema):
         load_instance = True
 
     user_id = fields.Integer(required=True)
-    product_id = fields.Integer(required=True)
+    products = fields.Nested('ProductSchema', many=True)

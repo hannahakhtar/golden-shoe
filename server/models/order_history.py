@@ -1,13 +1,13 @@
-from main import db, bcrypt
+from app import db
 from models.base import BaseModel
-from sqlalchemy.ext.hybrid import hybrid_property
-import jwt
 from datetime import *
-from config.environment import secret
+from models.product_in_order_history import product_order_join
+from models.product import Product
 
 class OrderHistory(db.Model, BaseModel):
 
     __tablename__ = 'order_history'
 
+    # order_value = db.Column(db.Float, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id", ondelete="CASCADE"))
-    product_id = db.Column(db.Integer, db.ForeignKey("product.id", ondelete="CASCADE"))
+    products = db.relationship('Product', backref='order_history', secondary=product_order_join)

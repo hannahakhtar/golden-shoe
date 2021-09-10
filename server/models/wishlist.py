@@ -1,4 +1,4 @@
-from main import db
+from app import db
 from models.base import BaseModel
 
 class Wishlist(db.Model, BaseModel):

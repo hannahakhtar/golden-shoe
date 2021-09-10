@@ -1,4 +1,4 @@
-from main import ma
+from app import ma
 from models.user import User
 from marshmallow import fields
 
@@ -11,7 +11,6 @@ class UserSchema(ma.SQLAlchemyAutoSchema):
         load_only = ('password')
 
     password = fields.String(required=True)
-    product = fields.Nested('ProductSchema', many=True)
     order_history = fields.Nested('OrderHistorySchema', many=True)
     wishlist = fields.Nested('WishlistSchema', many=True)
 

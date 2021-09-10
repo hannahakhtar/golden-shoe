@@ -1,4 +1,4 @@
-from main import db, bcrypt
+from app import db, bcrypt
 from models.base import BaseModel
 from models.wishlist import Wishlist
 from models.order_history import OrderHistory
@@ -42,11 +42,6 @@ class User(db.Model, BaseModel):
             "iat": datetime.utcnow(),
             "exp": datetime.utcnow() + timedelta(days=1)
         } 
-        # print(jwt)
-        # print(type(jwt))
-        # print("after 43")
-        # print(jwt.encode)
-        # print("dfgdfg")
         token = jwt.encode(payload, secret, 'HS256')
         return token
 

@@ -1,4 +1,4 @@
-from main import ma
+from app import ma
 from models.product import Product
 from marshmallow import fields
 
@@ -8,5 +8,5 @@ class ProductSchema(ma.SQLAlchemyAutoSchema):
         load_instance = True
 
     user = fields.Nested('SimpleUserSchema')    
-
+    
 

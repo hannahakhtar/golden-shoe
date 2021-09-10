@@ -2,7 +2,6 @@ from flask import Blueprint, request, g
 from models.product import Product
 from serializers.product import ProductSchema
 from marshmallow.exceptions import ValidationError
-from decorators.secure_route import secure_route
 
 product_schema = ProductSchema()
 

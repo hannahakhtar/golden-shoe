@@ -1,4 +1,4 @@
-from main import app, db
+from app import app, db
 from data.user_data import list_users
 from data.product_data import list_product
 from data.order_history_data import list_order_history
