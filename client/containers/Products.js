@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useForm } from 'react-hook-form'
+import Footer from '../components/Footer'
+
 
 export default function Products() {
   const [allProducts, setAllProducts] = useState([])
@@ -49,6 +51,7 @@ export default function Products() {
         </h2>
       </div>
     })}
+    <Footer />
   </>
 }
 
