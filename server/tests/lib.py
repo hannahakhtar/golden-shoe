@@ -6,7 +6,7 @@ from data.order_history_data import list_order_history
 import json
 
 def login(client):
-    login_data = {"password": "jake123", "email": "jake@jake.com"}
+    login_data = {"email": "bob@smith.com", "password": "bobsmith123"}
     login_response = client.post(
         "/api/login", data=json.dumps(login_data), content_type="application/json"
     )
@@ -17,23 +17,14 @@ def setup_db():
     with app.app_context():
         try:
             db.drop_all()
-
             db.create_all()
-
             db.session.add_all(list_users)
-
             db.session.commit()
-
             db.session.add_all(list_product)
-
             db.session.commit()
-
             db.session.add_all(list_wishlist)
-
             db.session.commit()
-
             db.session.add_all(list_order_history)
-
             db.session.commit()
 
             print("Everything committed 🧦")

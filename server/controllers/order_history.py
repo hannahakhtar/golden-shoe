@@ -38,7 +38,6 @@ def get_one_order_history(user_id, order_history_id):
 @secure_route
 def post_order(user_id):
     products_list = request.json
-    print(products_list)
 
     if user_id != g.current_user.id:
         return {'errors': 'Sorry - you do not have access to this'}, 401
