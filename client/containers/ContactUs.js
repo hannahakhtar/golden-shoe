@@ -17,7 +17,10 @@ export default function ContactUs() {
   return <>
       <Navbar /> 
     <h1>Contact Us</h1>
-    <p>Please fill in all of the fields below and one of our customer care team will be in touch within two working days.</p>
+
+    <p>Our Customer Care team are available between 9am and 5pm on Monday - Friday (excluding Bank Holidays).</p>
+    <p>During these hours, please call us on: <b>01234 567 890</b>.</p>
+    <p>Alternatively, lease fill in all of the fields below and one of our customer care team will be in touch within two working days.</p>
     <p>*: required field</p>
     {messageRecieved &&
       <div>

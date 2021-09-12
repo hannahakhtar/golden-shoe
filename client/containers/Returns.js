@@ -8,7 +8,7 @@ export default function Returns() {
   const { handleSubmit, register } = useForm()
   const [orderNumber, setOrderNumber] = useState()
   const [returns, setReturns] = useState(['returning'])
-  const reasonsArray = ['Doesn\'t fit', 'Shoe colour', 'Damaged on arrival', 'Quality not as expected', 'Other']
+  const reasonsArray = ['Doesn\'t fit', 'Shoe colour', 'Faulty', 'Quality not as expected', 'Other']
   
   async function onSubmit(data) {
     
