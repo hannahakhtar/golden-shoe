@@ -1,14 +1,14 @@
-import React from 'react'
+import React, { useState} from 'react'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 
-// * add some text under password to say how many characters it should be - also look into where you do this validation?
-// * validate email address - https://ui.dev/validate-email-address-javascript/
-
 export default function Login({ history }) {
-  const { handleSubmit, register } = useForm()
+
+  const [showError, setShowError] = useState(false)
+  const { handleSubmit, formState: { errors }, register } = useForm()
 
   async function onSubmit(data) {
+    setShowError(false)
     const formdata = {
       'email': data.emailAddress,
       'password': data.password
@@ -19,7 +19,7 @@ export default function Login({ history }) {
         localStorage.setItem('token', data.token)
         history.push('/')
       } else {
-        console.log('Unable to login - email and/or password are not correct.')
+        setShowError(true)
       }
     } catch (err) {
       console.log(err.response.data)
@@ -28,8 +28,9 @@ export default function Login({ history }) {
 
   return <>
     <h1>Login</h1>
-
+    <p>*: required field</p>
     <form onSubmit={handleSubmit(onSubmit)}>
+      <label>* Email Address:</label>
       <input
         {...register('emailAddress', { required: true })}
         name='emailAddress'
@@ -38,6 +39,8 @@ export default function Login({ history }) {
         defaultValue=''
       // className={`input ${errors.username && 'is-danger'}`}
       />
+      {errors.emailAddress?.type === 'required' && 'An email address is required'}
+      <label>* Password:</label>
       <input
         {...register('password', { required: true })}
         name='password'
@@ -46,8 +49,15 @@ export default function Login({ history }) {
         defaultValue=''
       // className={`input ${errors.username && 'is-danger'}`}
       />
-      <input type="submit" value="Login"/>
+      {errors.password?.type === 'required' && 'A password is required'}
+      {showError && 
+      <div>
+        Unable to login - email and/or password are incorrect.
+      </div>
+      }
+      <input type="submit" value="Login" />
     </form>
   </>
+
 
 }

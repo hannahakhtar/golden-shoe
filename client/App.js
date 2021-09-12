@@ -8,6 +8,11 @@ import Login from './containers/login'
 import Products from './containers/Products'
 import NotFound from './containers/NotFound'
 import ProductSpotlight from './containers/ProductSpotlight'
+import Returns from './containers/Returns'
+import FAQs from './containers/FAQs'
+import Account from './containers/Account'
+import ContactUs from './containers/ContactUs'
+
 
 const App = () => (
   <BrowserRouter>
@@ -18,10 +23,14 @@ const App = () => (
       <Route exact path="/products" component={Products} />
       <Route exact path="/not-found" component={NotFound} />
       <Route exact path="/products/:productId" component={ProductSpotlight} />
-      <Redirect to="/not-found" />
+      <Route exact path="/returns" component={Returns}/>
+      <Route exact path="/faqs" component={FAQs}/>
+      <Route exact path="/my-account" component={Account}/>
+      <Route exact path="/contact-us" component={ContactUs}/>
+
+      <Redirect to="/not-found"/>
     </Switch>
   </BrowserRouter>
 )
-
 
 export default App  
