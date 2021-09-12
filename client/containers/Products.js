@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import RingLoader from 'react-spinners/RingLoader'
 
 // ! clear search button
 // ! if no results when searching
@@ -15,7 +16,7 @@ export default function Products() {
   const [searchText, setSearchText] = useState('')
   const [categoryToSearch, setCategoryToSearch] = useState('All')
   const [searchSubmitted, setSearchSubmitted] = useState(false)
-
+  const [isLoading, setIsLoading] = useState(false)
   const { handleSubmit, register } = useForm()
   const categories = ['All', 'Sports', 'Evening Wear', 'Casual', 'Slippers', 'Sandals', 'High Heels', 'Pumps']
 
@@ -25,11 +26,13 @@ export default function Products() {
 
   async function getAllProducts() {
     const { data } = await axios.get('/api/products')
+    setTimeout
     setAllProducts(data)
     setProductsToDisplay(data)
   }
 
   function onSubmit() {
+    setIsLoading(true)
     const resultsToDisplay = []
     productsToDisplay.map((product) => {
       if (product.product_name.toLowerCase().includes(searchText.toLowerCase()) || product.outer_material.toLowerCase().includes(searchText.toLowerCase()) || product.inner_material.toLowerCase().includes(searchText.toLowerCase()) || product.description.toLowerCase().includes(searchText.toLowerCase()) || product.category.toLowerCase().includes(searchText.toLowerCase())) {
@@ -42,6 +45,7 @@ export default function Products() {
     })
     setProductsToDisplay(resultsToDisplay)
     setSearchSubmitted(true)
+    setIsLoading(false)
   }
 
   let displayProducts
@@ -81,6 +85,10 @@ export default function Products() {
         </div>
       })
     }
+  }
+
+  if (isLoading) {
+    return RingLoader
   }
 
   return <>
