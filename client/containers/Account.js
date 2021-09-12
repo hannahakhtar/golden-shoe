@@ -3,41 +3,206 @@ import axios from 'axios'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import { getLoggedInUserId } from '../lib/auth.js'
-
+import { useForm } from 'react-hook-form'
 
 export default function MyAccount() {
 
-  const [username, setUsername] = useState('')
+  const [user, setUser] = useState({})
+  const [savedItems, setSavedItems] = useState([])
+  const [orderHistory, setOrderHistory] = useState([])
+  const [showOrderHistory, setShowOrderHistory] = useState(false)
+  const [showSavedItems, setShowSavedItems] = useState(false)
+  const [showUpdateDetails, setShowUpdateDetails] = useState(false)
+  const [updateDetailsResponse, setUpdateDetailsResponse] = useState('')
   const loggedInUserId = getLoggedInUserId()
   const token = localStorage.getItem('token')
+  const { handleSubmit, register } = useForm()
+
 
   useEffect(() => {
-    async function fetchData() {
-      if (loggedInUserId) {
-        try {
-          const { data } = await axios.get(`/api/users/${loggedInUserId}`, {
-            headers: { Authorization: `Bearer ${token}` }
-          })
-          if (data.errors) {
-            console.log(data.errors)
-          } else {
-            setUsername(data.first_name)
-          }
-        } catch (err) {
-          console.log(err)
+    fetchData()
+    getMySavedItems()
+    getMyOrders()
+  }, [])
+
+  async function fetchData() {
+    if (loggedInUserId) {
+      try {
+        const { data } = await axios.get(`/api/users/${loggedInUserId}`, {
+          headers: { Authorization: `Bearer ${token}` }
+        })
+        if (data.errors) {
+          console.log(data.errors)
+        } else {
+          console.log(data)
+          setUser(data)
         }
+      } catch (err) {
+        console.log(err)
       }
     }
-    fetchData()
-  }, [])
+  }
+
+  async function getMySavedItems() {
+    if (loggedInUserId) {
+      try {
+        const { data } = await axios.get(`/api/wishlist/${loggedInUserId}`, {
+          headers: { Authorization: `Bearer ${token}` }
+        })
+        if (data.errors) {
+          console.log(data.errors)
+        } else {
+          console.log('saved items', data)
+          setSavedItems(data)
+        }
+      } catch (err) {
+        console.log(err)
+      }
+    }
+  }
+
+  async function getMyOrders() {
+    if (loggedInUserId) {
+      try {
+        const { data } = await axios.get(`/api/users/${loggedInUserId}/orders`, {
+          headers: { Authorization: `Bearer ${token}` }
+        })
+        if (data.errors) {
+          console.log(data.errors)
+        } else {
+          console.log('this', data[0].products)
+          setOrderHistory(data[0].products)
+        }
+      } catch (err) {
+        console.log(err)
+      }
+    }
+  }
+
+  async function deleteAccount() {
+    if (loggedInUserId) {
+      try {
+        const { data } = await axios.delete(`/users/${loggedInUserId}`, {
+          headers: { Authorization: `Bearer ${token}` }
+        })
+        if (data.errors) {
+          console.log(data.errors)
+        } else {
+          localStorage.removeItem('token')
+          history.push('/')
+        }
+      } catch (err) {
+        console.log(err)
+      }
+    }
+  }
+
+  function removeFalsyValues(obj) {
+    for (const propName in obj) {
+      if (obj[propName] === null || obj[propName] === undefined || obj[propName] === '') {
+        delete obj[propName]
+      }
+    }
+    return obj
+  }
+  async function submitUpdateDetails(formSubmission) {
+    const formData = removeFalsyValues(formSubmission)
+    try {
+      const { data } = await axios.put(`/api/users/${loggedInUserId}`, formData, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      if (data.errors) {
+        setUpdateDetailsResponse('Your account could not be updated - please try again')
+      } else {
+        setUpdateDetailsResponse('Your details have successfully been updated.')
+      }
+    } catch (err) {
+      console.log(err)
+    }
+
+  }
 
   return <>
     <Navbar />
     <h2>Account</h2>
-    <p>Welcome back, {username}!</p>
-    <button>My Saved Items</button>
-    <button>My Orders</button>
-    <button>Update my details</button>
+    <p>Welcome back, {user.first_name}!</p>
+    <div>
+      {!showSavedItems && <button onClick={() => setShowSavedItems(true)}>My Saved Items</button>}
+      {showSavedItems && <button onClick={() => setShowSavedItems(false)}>Hide My Saved Items</button>}
+      {!showOrderHistory && <button onClick={() => setShowOrderHistory(true)}>My Orders</button>}
+      {showOrderHistory && <button onClick={() => setShowOrderHistory(false)}>Hide My Orders</button>}
+      {!showUpdateDetails && <button onClick={() => setShowUpdateDetails(true)}>Update My details</button>}
+      {showUpdateDetails && <button onClick={() => setShowUpdateDetails(false)}>Hide My details</button>}
+    </div>
+    <div>
+      {showSavedItems &&
+      <div>
+        {savedItems.map((item) => {
+          return item.product.product_name
+        })}
+      </div>
+      }
+    </div>
+    <div>
+      {showOrderHistory &&
+        <div>
+          {orderHistory.map((order) => {
+            return order.product_name
+          })}
+        </div>
+      }
+    </div>
+    <div>
+      {showUpdateDetails &&
+        <div>
+          <p>Update your account information here:</p>
+          <form onSubmit={handleSubmit(submitUpdateDetails)}>
+            <label>Email Address:</label>
+            <input
+              {...register('email')}
+              name='email'
+              placeholder='Email Address'
+              type='text'
+              defaultValue={user.email}
+            // className={`input ${errors.username && 'is-danger'}`}
+            />
+            <label>Password:</label>
+            <input
+              {...register('password')}
+              name='password'
+              placeholder='Password'
+              type='password'
+              defaultValue=''
+            // className={`input ${errors.username && 'is-danger'}`}
+            />
+            <label>First Name:</label>
+            <input
+              {...register('first_name')}
+              name='first_name'
+              placeholder='First Name'
+              type='text'
+              defaultValue={user.first_name}
+            // className={`input ${errors.username && 'is-danger'}`}
+            />
+            <label>Last Name:</label>
+            <input
+              {...register('last_name')}
+              name='last_name'
+              placeholder='Last Name'
+              type='text'
+              defaultValue={user.last_name}
+            // className={`input ${errors.username && 'is-danger'}`}
+            />
+            <input type="submit" value="Update Details" />
+          </form>
+          {updateDetailsResponse}
+          <div>
+            <p>Be careful, your account will be deleted immediately once you click this!</p>
+            <button onClick={deleteAccount}>Delete Account</button>
+          </div>
+        </div>
+      }
+    </div>
     <Footer />
   </>
 

@@ -1,7 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import './styles/style.scss'
-// import axios from 'axios'
 import Home from './containers/Home'
 import Register from './containers/register'
 import Login from './containers/login'
@@ -12,7 +11,8 @@ import Returns from './containers/Returns'
 import FAQs from './containers/FAQs'
 import Account from './containers/Account'
 import ContactUs from './containers/ContactUs'
-
+import Basket from './containers/Basket'
+import Checkout from './containers/Checkout'
 
 const App = () => (
   <BrowserRouter>
@@ -27,6 +27,8 @@ const App = () => (
       <Route exact path="/faqs" component={FAQs}/>
       <Route exact path="/my-account" component={Account}/>
       <Route exact path="/contact-us" component={ContactUs}/>
+      <Route exact path="/my-basket" component={Basket}/>
+      <Route exact path="/checkout" component={Checkout}/>
 
       <Redirect to="/not-found"/>
     </Switch>

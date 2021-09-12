@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 
 export default function Returns() {
 
@@ -30,7 +32,8 @@ export default function Returns() {
   }
 
   return <>
-    <h1>Register</h1>
+  <Navbar />
+    <h1>Generate Return</h1>
     <p>Please enter all details on this form and a return label will be generated and sent to your email addrress.</p>
     <p>You have 28 days to return the shoes to us in the same condition for a refund.</p>
     <p>It can take up to two weeks for return of funds.</p>
@@ -66,6 +69,7 @@ export default function Returns() {
       <button onClick={removeProductInput}>Remove last product</button>
       <input type="submit" value="Submit Return Details" onSubmit={onSubmit} />
     </form>
+    <Footer />
   </>
 }
 

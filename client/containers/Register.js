@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 
 // ! validate email address - https://ui.dev/validate-email-address-javascript
 
@@ -51,6 +53,7 @@ export default function Register({ history }) {
   }
 
   return <>
+    <Navbar /> 
     <h1>Register</h1>
     <p>*: required field</p>
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -118,6 +121,7 @@ export default function Register({ history }) {
       }
       <input type="submit" value="Register" />
     </form>
+    <Footer /> 
   </>
 
 }

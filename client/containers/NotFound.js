@@ -1,6 +1,8 @@
 import React from 'react'
 import { useHistory, Link } from 'react-router-dom'
 import { getLoggedInUserId } from '../lib/auth.js'
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 
 export default function NotFound() {
 
@@ -8,6 +10,7 @@ export default function NotFound() {
   const history = useHistory()
 
   return <>
+      <Navbar />
     <div className="hero is-fullheight-with-navbar">
       <div>
         <div className="container pt-5 pb-5 px-4 display-no-search-results">
@@ -19,5 +22,6 @@ export default function NotFound() {
         </div>
       </div>
     </div>
+    <Footer />
   </>
 }

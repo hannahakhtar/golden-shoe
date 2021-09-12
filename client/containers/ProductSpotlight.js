@@ -1,22 +1,26 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import React, { useState } from 'react'
+import FacebookShareButton from '../components/facebookShare'
+import TwitterShareButton from '../components/twitterShare'
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
+export default function ProductSpotlight({ location }) {
 
-export default function ProductSpotlight({ match, history }) {
+  const [product, setProduct] = useState(location.state.item)
+  const productId = product.id
+  console.log(product)
 
-  const [product, setProduct] = useState({})
-  const productId = match.params.id
-
-  useEffect(() => {
-    fetchSpecificProductInfo()
-  }, [])
-
-  async function fetchSpecificProductInfo() {
-    const { data } = await axios.get(`/api/products/${productId}`)
-    // const { data } = await axios.get('/api/products/1')
-    setProduct(data)
-  }
 
   return <>
+    <Navbar />
     <h1>Single Product</h1>
+    <p>{productId}</p>
+    <FacebookShareButton
+      productId={productId}
+    />
+    <TwitterShareButton
+      productId={productId}
+    />
+    <Footer />
   </>
 }
+

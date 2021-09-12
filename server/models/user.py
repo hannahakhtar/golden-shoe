@@ -43,7 +43,3 @@ class User(db.Model, BaseModel):
         } 
         token = jwt.encode(payload, secret, 'HS256')
         return token
-
-
-
-

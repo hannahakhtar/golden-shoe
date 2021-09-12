@@ -1,6 +1,8 @@
-import React, { useState} from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 
 export default function Login({ history }) {
 
@@ -27,6 +29,7 @@ export default function Login({ history }) {
   }
 
   return <>
+    <Navbar />
     <h1>Login</h1>
     <p>*: required field</p>
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -50,13 +53,14 @@ export default function Login({ history }) {
       // className={`input ${errors.username && 'is-danger'}`}
       />
       {errors.password?.type === 'required' && 'A password is required'}
-      {showError && 
-      <div>
-        Unable to login - email and/or password are incorrect.
-      </div>
+      {showError &&
+        <div>
+          Unable to login - email and/or password are incorrect.
+        </div>
       }
       <input type="submit" value="Login" />
     </form>
+    <Footer />
   </>
 
 

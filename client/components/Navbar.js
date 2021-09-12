@@ -8,39 +8,42 @@ export default function Navbar({ history }) {
   // ! add in logo to Navbar
 
   const [loggedIn, updateLoggedIn] = useState(false)
+  // const []
   const loggedInUserId = getLoggedInUserId()
   const token = localStorage.getItem('token')
 
   useEffect(() => {
-    async function fetchData() {
-      if (loggedInUserId) {
-        try {
-          const { data } = await axios.get(`/api/users/${loggedInUserId}`, {
-            headers: { Authorization: `Bearer ${token}` }
-          })
-          if (data.errors) {
-            console.log(data.errors)
-          } else {
-            updateLoggedIn(true)
-          }
-        } catch (err) {
-          console.log(err)
-        }
-      }
-    }
     fetchData()
   }, [loggedIn])
+
+  async function fetchData() {
+    if (loggedInUserId) {
+      try {
+        const { data } = await axios.get(`/api/users/${loggedInUserId}`, {
+          headers: { Authorization: `Bearer ${token}` }
+        })
+        if (data.errors) {
+          console.log(data.errors)
+        } else {
+          updateLoggedIn(true)
+        }
+      } catch (err) {
+        console.log(err)
+      }
+    }
+  }
 
   function logOut() {
     localStorage.removeItem('token')
     updateLoggedIn(false)
     history.push('/')
   }
-  
+
   return <>
     {loggedIn ?
       <div>
-        <Link className='button' to='/register'>My Account</Link>
+        <Link className='button' to='/my-account'>My Account</Link>
+        <Link className='button' to='/my-basket'>Basket</Link>
         <a onClick={logOut}>Log Out</a>
       </div>
       :
