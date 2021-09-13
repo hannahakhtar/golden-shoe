@@ -4,6 +4,8 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import { getLoggedInUserId } from '../lib/auth.js'
 import { useForm } from 'react-hook-form'
+import Header from '../components/Header'
+
 
 export default function MyAccount() {
 
@@ -124,7 +126,8 @@ export default function MyAccount() {
 
   return <>
     <Navbar />
-    <h2>Account</h2>
+    <Header header="My Account" />
+    <div className="maiBody"></div>
     <p>Welcome back, {user.first_name}!</p>
     <div>
       {!showSavedItems && <button onClick={() => setShowSavedItems(true)}>My Saved Items</button>}
@@ -166,7 +169,6 @@ export default function MyAccount() {
                 type='text'
                 defaultValue={user.email}
                 className="input"
-              // className={`input ${errors.username && 'is-danger'}`}
               />
               <label className="label">Password:</label>
               <input
@@ -176,7 +178,6 @@ export default function MyAccount() {
                 type='password'
                 defaultValue=''
                 className="input"
-              // className={`input ${errors.username && 'is-danger'}`}
               />
               <label className="label">First Name:</label>
               <input
@@ -186,7 +187,6 @@ export default function MyAccount() {
                 type='text'
                 defaultValue={user.first_name}
                 className="input"
-              // className={`input ${errors.username && 'is-danger'}`}
               />
               <label className="label">Last Name:</label>
               <input
@@ -196,17 +196,16 @@ export default function MyAccount() {
                 type='text'
                 defaultValue={user.last_name}
                 className="input"
-              // className={`input ${errors.username && 'is-danger'}`}
               />
               <div className="submitButton">
-                <input className="button is-warning"type="submit" value="Update Details" />
+                <input className="button is-warning" type="submit" value="Update Details" />
               </div>
             </form>
           </div>
           {updateDetailsResponse}
           <div>
+            <button className="button is-danger" onClick={deleteAccount}>Delete Account</button>
             <p>Be careful, your account will be deleted immediately once you click this!</p>
-            <button onClick={deleteAccount}>Delete Account</button>
           </div>
         </div>
       }

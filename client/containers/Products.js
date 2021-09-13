@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import RingLoader from 'react-spinners/RingLoader'
+import Header from '../components/Header'
 
 // ! clear search button
 // ! if no results when searching
@@ -93,28 +94,32 @@ export default function Products() {
 
   return <>
     <Navbar />
-    <h1>Products</h1>
-    <form id='searchForm' onSubmit={handleSubmit(onSubmit)}>
-      <input
-        {...register('search', { required: true })}
-        name='search'
-        placeholder='Search'
-        type='text'
-        defaultValue=''
-        onChange={(event) => setSearchText(event.target.value)}
-      // className={`input ${errors.username && 'is-danger'}`}
-      />
-      <select id="categoryOptions" name="Categories" form="searchForm" onChange={(event) => setCategoryToSearch(event.target.value)}>
-        <option value="All">Categories</option>
-        <option value="All">All categories</option>
-        {categories.map((category, index) => {
-          return <option key={index} value={category}>{category}</option>
-        })}
-      </select>
-      <input type="submit" value="Search" />
-    </form>
-    <button onClick={clearFilters}>Show all products</button>
-    {displayProducts}
+    <Header header="All Products" />
+    <div className="mainBody">
+
+      <form id='searchForm' onSubmit={handleSubmit(onSubmit)}>
+        <input
+          {...register('search', { required: true })}
+          name='search'
+          placeholder='Search'
+          type='text'
+          defaultValue=''
+          onChange={(event) => setSearchText(event.target.value)}
+          className="input"
+        />
+        <select className="select" id="categoryOptions" name="Categories" form="searchForm" onChange={(event) => setCategoryToSearch(event.target.value)}>
+          <option value="All">Categories</option>
+          <option value="All">All categories</option>
+          {categories.map((category, index) => {
+            return <option key={index} value={category}>{category}</option>
+          })}
+        </select>
+        <input className="button is-warning" type="submit" value="Search" />
+      </form>
+      <button className="button is-warning" onClick={clearFilters}>Show all products</button>
+      {displayProducts}
+    </div>
+
     <Footer />
   </>
 }

@@ -58,7 +58,8 @@ export default function Navbar({ history }) {
       <div className="navbar-end">
         <div className="navGroupingOne">
           <Link className='button navbar-item' to='/products'>Products</Link>
-          <Link className='button navbar-item' to='faqs'>FAQs</Link>
+          <Link className='button navbar-item' to='/faqs'>FAQs</Link>
+          <Link className='button navbar-item' to='/returns'>Returns</Link>
         </div>
         {loggedIn ?
           <div className="navGroupingTwo">

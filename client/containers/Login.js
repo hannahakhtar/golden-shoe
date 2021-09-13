@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import Header from '../components/Header'
 
 export default function Login({ history }) {
 
@@ -30,41 +31,42 @@ export default function Login({ history }) {
 
   return <>
     <Navbar />
-    <h1>Login</h1>
-    <p>*: required field</p>
-    <div className="formContainer">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label className="label">* Email Address:</label>
-        <input
-          {...register('emailAddress', { required: true })}
-          name='emailAddress'
-          placeholder='Email Address'
-          type='text'
-          defaultValue=''
-          className="input"
-        // className={`input ${errors.username && 'is-danger'}`}
-        />
-        {errors.emailAddress?.type === 'required' && 'An email address is required'}
-        <label className="label">* Password:</label>
-        <input
-          {...register('password', { required: true })}
-          name='password'
-          placeholder='Password'
-          type='password'
-          defaultValue=''
-          className="input"
-        // className={`input ${errors.username && 'is-danger'}`}
-        />
-        {errors.password?.type === 'required' && 'A password is required'}
-        {showError &&
-          <div>
-            Unable to login - email and/or password are incorrect.
+    <Header header="Login" />
+    <div className="mainBody">
+
+      <p>*: required field</p>
+      <div className="formContainer">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <label className="label">* Email Address:</label>
+          <input
+            {...register('emailAddress', { required: true })}
+            name='emailAddress'
+            placeholder='Email Address'
+            type='text'
+            defaultValue=''
+            className={`input ${errors.emailAddress && 'is-danger'}`}
+          />
+          {errors.emailAddress?.type === 'required' && 'An email address is required'}
+          <label className="label">* Password:</label>
+          <input
+            {...register('password', { required: true })}
+            name='password'
+            placeholder='Password'
+            type='password'
+            defaultValue=''
+            className={`input ${errors.password && 'is-danger'}`}
+          />
+          {errors.password?.type === 'required' && 'A password is required'}
+          {showError &&
+            <div>
+              Unable to login - email and/or password are incorrect.
+            </div>
+          }
+          <div className="submitButton">
+            <input className="button is-warning" type="submit" value="Login" />
           </div>
-        }
-        <div className="submitButton">
-          <input className="button is-warning" type="submit" value="Login" />
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
     <Footer />
   </>

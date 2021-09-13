@@ -7,7 +7,9 @@ function Home() {
 
   return <>
     <Navbar />
-    <p>Hello World!</p>
+    <div className="mainBody">
+      <p>Hello World!</p>
+    </div>
     <Footer />
   </>
 }

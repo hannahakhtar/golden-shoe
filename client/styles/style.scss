@@ -8,10 +8,15 @@
 }
 
 body {
-  // body { min-height: 100vh; }
   background-color: #f0efeb;
 }
 
+.mainBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 80vh;
+}
 // Navbar and footer
 
 .navbar, .footer {
@@ -48,11 +53,25 @@ body {
   display: none;
 }
 
-//  Register
+// Header
+
+.headerContainer {
+  background-color: pink;
+  padding: 0.5em;
+  font-size: 2em;
+  text-align: center;
+}
+
+//  Forms
 
 .formContainer {
   display: flex;
   justify-content: center;
+}
+
+.preFormText {
+  margin: 1em;
+  text-align: center;
 }
 
 .label {
@@ -123,6 +142,15 @@ body {
 	opacity: 1;
 }
 
+// Returns
+
+.returnsButtons {
+  margin: 0.25em;
+}
+
+returnsForm {
+  margin: 1em;
+}
 
 @media only screen and (min-width: 481px) {
 

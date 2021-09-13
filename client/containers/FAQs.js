@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import FAQComponent from '../components/FAQcomponent'
+import Header from '../components/Header'
 
 // ! https://github.com/TylerPottsDev/react-accordion/blob/master/src/App.js
 // ! fix background image in component
@@ -54,14 +55,17 @@ export default function FAQs() {
 
   return <>
     <Navbar />
-    <h2>FAQs</h2>
-    <p>Our most frequently asked questions.</p>
-    <div className="faqs">
-      {faqs.map((faq, index) => {
-        return <div key={index}>
-          <FAQComponent faq={faq} index={index} toggleFAQ={toggleFAQ}/>
-        </div>
-      })}
+    <Header header="FAQs" />
+    <div className="mainBody">
+
+      <p>Our most frequently asked questions.</p>
+      <div className="faqs">
+        {faqs.map((faq, index) => {
+          return <div key={index}>
+            <FAQComponent faq={faq} index={index} toggleFAQ={toggleFAQ} />
+          </div>
+        })}
+      </div>
     </div>
     < Footer />
   </>

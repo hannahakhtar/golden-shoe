@@ -7,9 +7,6 @@ export default function Footer() {
 
   const loggedInUserId = getLoggedInUserId()
 
-
-
-
   return <div className="footerContainer">
     <footer className="footer">
       <div className="footerLinks">
