@@ -3,6 +3,7 @@ from data.user_data import list_users
 from data.product_data import list_product
 from data.order_history_data import list_order_history
 from data.wishlist_data import list_wishlist
+from data.contact_us_data import list_contact_us
 
 with app.app_context():
 
@@ -23,7 +24,11 @@ with app.app_context():
         db.session.commit()
 
         db.session.add_all(list_order_history)
-        print("Order History added 🧦")    
+        print("Order History added 🧦")
+
+        db.session.add_all(list_contact_us)
+        print("Contact Us added 🧦") 
+
         db.session.commit()       
 
         print("Everything committed 🩲")

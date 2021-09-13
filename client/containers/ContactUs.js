@@ -2,20 +2,44 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-
-// ! send messages to admin (https://medium.com/@patienceadajah/how-to-send-emails-from-a-react-application-without-a-backend-server-1dd8718ceedd) - should actually use a database for this
+import axios from 'axios'
 
 export default function ContactUs() {
 
   const [messageRecieved, setMessageRecieved] = useState(false)
   const { handleSubmit, formState: { errors }, register } = useForm()
 
-  function onSubmit(data) {
-    setMessageRecieved(true)
-    console.log(data)
+  // {
+  //   "first_name": "Sophie",
+  //   "last_name": "Akhtar",
+  //   "email": "hannahaakhtar@gmail.com", 
+  //   "phone_number": "07825216649",
+  //   "reason": "fghg51512312313"
+  //   }
+
+  async function onSubmit(submssion) {
+
+    const formdata = {
+      'email': submssion.email,
+      'reason': submssion.reason,
+      'first_name': submssion.first_name,
+      'last_name': submssion.last_name,
+      'phone_number': submssion.phone_number
+    }
+    try {
+      const { data } = await axios.post('/api/contact-us', formdata,)
+      if (data.error) {
+        console.log(data.error)
+      } else {
+        setMessageRecieved(true)
+      }
+    } catch (err) {
+      console.log(err)
+    }
   }
+
   return <>
-      <Navbar /> 
+    <Navbar />
     <h1>Contact Us</h1>
 
     <p>Our Customer Care team are available between 9am and 5pm on Monday - Friday (excluding Bank Holidays).</p>
@@ -30,44 +54,44 @@ export default function ContactUs() {
     <form onSubmit={handleSubmit(onSubmit)}>
       <label>* First Name:</label>
       <input
-        {...register('firstName', { required: true })}
-        name='firstName'
+        {...register('first_name', { required: true })}
+        name='first_name'
         placeholder='First Name'
         type='text'
         defaultValue=''
       // className={`input ${errors.username && 'is-danger'}`}
       />
-      {errors.firstName?.type === 'required' && 'First name is required'}
+      {errors.first_name?.type === 'required' && 'First name is required'}
       <label>* Last Name:</label>
       <input
-        {...register('lastName', { required: true })}
-        name='lastName'
+        {...register('last_name', { required: true })}
+        name='last_name'
         placeholder='Last Name'
         type='text'
         defaultValue=''
       // className={`input ${errors.username && 'is-danger'}`}
       />
-      {errors.lastName?.type === 'required' && 'Last name is required'}
+      {errors.last_name?.type === 'required' && 'Last name is required'}
       <label>* Email Address:</label>
       <input
-        {...register('emailAddress', { required: true })}
-        name='emailAddress'
+        {...register('email', { required: true })}
+        name='email'
         placeholder='Email Address'
         type='text'
         defaultValue=''
       // className={`input ${errors.username && 'is-danger'}`}
       />
-      {errors.emailAddress?.type === 'required' && 'An email address is required'}
+      {errors.email?.type === 'required' && 'An email address is required'}
       <label>* Phone Number:</label>
       <input
-        {...register('phoneNumber', { required: true })}
-        name='phoneNumber'
+        {...register('phone_number', { required: true })}
+        name='phone_number'
         placeholder='Phone Number'
         type='text'
         defaultValue=''
       // className={`input ${errors.username && 'is-danger'}`}
       />
-      {errors.phoneNumber?.type === 'required' && 'A phone number is required'}
+      {errors.phone_number?.type === 'required' && 'A phone number is required'}
       <label>* How can we help you?:</label>
       <input
         {...register('reason', { required: true })}

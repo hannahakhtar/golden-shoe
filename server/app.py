@@ -16,12 +16,13 @@ db = SQLAlchemy(app)
 ma = Marshmallow(app)
 bcrypt = Bcrypt(app)
 
-from controllers import user, product, wishlist, order_history
+from controllers import user, product, wishlist, order_history, contact_us
 
 app.register_blueprint(user.router, url_prefix="/api")
 app.register_blueprint(product.router, url_prefix="/api")
 app.register_blueprint(wishlist.router, url_prefix="/api")
 app.register_blueprint(order_history.router, url_prefix="/api")
+app.register_blueprint(contact_us.router, url_prefix="/api")
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')

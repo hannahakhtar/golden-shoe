@@ -8,6 +8,5 @@ class OrderHistory(db.Model, BaseModel):
 
     __tablename__ = 'order_history'
 
-    # order_value = db.Column(db.Float, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id", ondelete="CASCADE"))
     products = db.relationship('Product', backref='order_history', secondary=product_order_join)
