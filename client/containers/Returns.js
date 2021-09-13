@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
@@ -8,16 +9,17 @@ export default function Returns() {
   const { handleSubmit, register } = useForm()
   const [orderNumber, setOrderNumber] = useState()
   const [returns, setReturns] = useState(['returning'])
+  const [showRecieved, setShowRecieved] = useState(false)
   const reasonsArray = ['Doesn\'t fit', 'Shoe colour', 'Faulty', 'Quality not as expected', 'Other']
-  
-  async function onSubmit(data) {
-    
-    // ! cannot submit until order number, product ID and reason (value cannot be "") have been selected - error shows if this is issue
-    // ! when new input is added, remove all the previous data
-    // ! on submit - 'thank you for your return details - an email will be sent with your label.'
 
+  // ! cannot submit until order number, product ID and reason (value cannot be "") have been selected - error shows if this is issue
+  // ! when new input is added, remove all the previous data
+  // ! one product minimum
+
+  async function onSubmit(data) {
     console.log('Order number: ', orderNumber)
     console.log('Product IDs and reason for return', data)
+    setShowRecieved(true)
   }
 
   function addProductInput() {
@@ -31,8 +33,15 @@ export default function Returns() {
     setReturns(currentArrayOfReturns)
   }
 
+  if (showRecieved) {
+    return <div>
+      <p>Thanks for your return. You will recieve an email shortly with details of how to print your label.</p>
+      <Link to={'/'}>Home</Link>
+    </div>
+  }
+
   return <>
-  <Navbar />
+    <Navbar />
     <h1>Generate Return</h1>
     <p>Please enter all details on this form and a return label will be generated and sent to your email addrress.</p>
     <p>You have 28 days to return the shoes to us in the same condition for a refund.</p>
@@ -65,10 +74,11 @@ export default function Returns() {
           </select>
         </div>
       })}
-      <button onClick={addProductInput}>Add another product</button>
-      <button onClick={removeProductInput}>Remove last product</button>
+
       <input type="submit" value="Submit Return Details" onSubmit={onSubmit} />
     </form>
+    <button onClick={addProductInput}>Add another product</button>
+    <button onClick={removeProductInput}>Remove last product</button>
     <Footer />
   </>
 }

@@ -21,4 +21,3 @@ class Product(db.Model, BaseModel):
     gender = db.Column(db.Text, nullable=False)
 
     wishlist = db.relationship('Wishlist', backref='product', cascade="all, delete")
-    # order_history = db.relationship('OrderHistory', backref='product', cascade="all, delete")

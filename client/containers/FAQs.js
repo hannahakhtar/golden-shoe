@@ -10,9 +10,14 @@ export default function FAQs() {
 
   const [faqs, setFaqs] = useState([
     {
+      question: 'How long will I have to wait for my delivery?',
+      answer: 'Our orders are shipped with Royal Mail and take 3-5 working days, from date of shipping.',
+      open: false
+    },
+    {
       question: 'I am still waiting for my order',
       answer: 'Has your estimated delivery date elapsed? Please allow a few extra days for your order to be delivered (especially during busy times. Our carriers are always doing their best to get your order to you, so make sure you keep an eye on your tracking link for the latest updates. If your order doesn not arrive, please let us know within 30 days of the date by which your order should have been delivered and we’ll do our best to help you.',
-      open: true
+      open: false
     },
     {
       question: 'Will you be getting more stock?',

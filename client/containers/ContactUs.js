@@ -9,14 +9,6 @@ export default function ContactUs() {
   const [messageRecieved, setMessageRecieved] = useState(false)
   const { handleSubmit, formState: { errors }, register } = useForm()
 
-  // {
-  //   "first_name": "Sophie",
-  //   "last_name": "Akhtar",
-  //   "email": "hannahaakhtar@gmail.com", 
-  //   "phone_number": "07825216649",
-  //   "reason": "fghg51512312313"
-  //   }
-
   async function onSubmit(submssion) {
 
     const formdata = {

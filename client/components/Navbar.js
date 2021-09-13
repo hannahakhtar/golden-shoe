@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { getLoggedInUserId } from '../lib/auth.js'
 
+
+
 export default function Navbar({ history }) {
 
   // ! add in logo to Navbar
 
   const [loggedIn, updateLoggedIn] = useState(false)
-  // const []
+  const [isActive, setisActive] = useState(false)
   const loggedInUserId = getLoggedInUserId()
   const token = localStorage.getItem('token')
 
@@ -39,20 +41,43 @@ export default function Navbar({ history }) {
     history.push('/')
   }
 
-  return <>
-    {loggedIn ?
-      <div>
-        <Link className='button' to='/my-account'>My Account</Link>
-        <Link className='button' to='/my-basket'>Basket</Link>
-        <a onClick={logOut}>Log Out</a>
+  return <div className="navbar" role="navigation" aria-label="main navigation">
+    <div className="navbar-brand">
+      <a className="navbar-item" href="http://localhost:8001/">
+        <img src="../images.Logo.png" width="112" height="28" />
+      </a>
+      <a role="button" className={`navbar-burger burger ${isActive ? 'is-active' : ''}`} aria-label="menu" aria-expanded="false" onClick={() => { setisActive(!isActive) }}>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div className={`navbar-menu ${isActive ? 'is-active' : ''}`}>
+      <div className="navbar-end">
+        <div className="navGroupingOne">
+          <Link className='button navbar-item' to='/products'>Products</Link>
+          <Link className='button navbar-item' to='faqs'>FAQs</Link>
+        </div>
+        {loggedIn ?
+          <div className="navGroupingTwo">
+            <Link className='button navbar-item' to='/my-account'>My Account</Link>
+            <Link className='button navbar-item' to='/my-basket'>Basket</Link>
+            <Link className='button navbar-item' onClick={logOut}>Log Out</Link>
+          </div>
+          :
+          <div className="navGroupingThree">
+            <Link className='button navbar-item' to='/register'>Register</Link>
+            <Link className='button navbar-item' to='/login'>Login</Link>
+          </div>
+        }
       </div>
-      :
-      <div>
-        <Link className='button' to='/register'>Register</Link>
-        <Link className='button' to='/login'>Login</Link>
-      </div>
-    }
-    <Link className='button' to='/products'>Products</Link>
-    <Link className='button' to='faqs'>FAQs</Link>
-  </>
+    </div>
+  </div>
+
+
+
+
+
 }
+
+
