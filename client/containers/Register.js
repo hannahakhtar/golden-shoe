@@ -53,75 +53,82 @@ export default function Register({ history }) {
   }
 
   return <>
-    <Navbar /> 
+    <Navbar />
     <h1>Register</h1>
     <p>*: required field</p>
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <label>* Email Address:</label>
-      <input
-        {...register('emailAddress', { required: true })}
-        name='emailAddress'
-        placeholder='Email Address'
-        type='text'
-        defaultValue=''
-      // className={`input ${errors.username && 'is-danger'}`}
-      />
-      {errors.emailAddress?.type === 'required' && 'An email address is required'}
-      {emailRegistered &&
-        <div>
-          <p>There is already an account associated with this email address. Either <Link to='/login'>login</Link> or retry.</p>
+    <div className="formContainer">
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <label className="label">* Email Address:</label>
+        <input
+          {...register('emailAddress', { required: true })}
+          name='emailAddress'
+          placeholder='Email Address'
+          type='text'
+          defaultValue=''
+          className="input"
+        // className={`input ${errors.username && 'is-danger'}`}
+        />
+        {errors.emailAddress?.type === 'required' && 'An email address is required'}
+        {emailRegistered &&
+          <div>
+            <p>There is already an account associated with this email address. Either <Link to='/login'>login</Link> or retry.</p>
+          </div>
+        }
+        <label className="label">* First Name:</label>
+        <input
+          {...register('firstName', { required: true })}
+          name='firstName'
+          placeholder='First Name'
+          type='text'
+          defaultValue=''
+          className="input"
+        // className={`input ${errors.username && 'is-danger'}`}
+        />
+        {errors.firstName?.type === 'required' && 'First name is required'}
+        <label className="label">* Last Name:</label>
+        <input
+          {...register('lastName', { required: true })}
+          name='lastName'
+          placeholder='Last Name'
+          type='text'
+          defaultValue=''
+          className="input"
+        // className={`input ${errors.username && 'is-danger'}`}
+        />
+        {errors.lastName?.type === 'required' && 'Last name is required'}
+        <label className="label">* Password: (minimum of 6 characters)</label>
+        <input
+          {...register('password', { required: true, minLength: 6 })}
+          name='password'
+          placeholder='Password'
+          type='password'
+          defaultValue=''
+          className="input"
+        // className={`input ${errors.username && 'is-danger'}`}
+        />
+        {errors.password?.type === 'required' && 'A password is required'}
+        <label className="label">* Confirm password: (Must match the password above!</label>
+        <input
+          {...register('retypePassword', { required: true, minLength: 6 })}
+          name='retypePassword'
+          placeholder='Retype password'
+          type='password'
+          defaultValue=''
+          className="input"
+        // className={`input ${errors.username && 'is-danger'}`}
+        />
+        {errors.retypePassword?.type === 'required' && 'Please confirm your password.'}
+        {passwordsDoNotMatch &&
+          <div>
+            <p>Passwords do not match, please try again.</p>
+          </div>
+        }
+        <div className="submitButton">
+          <input type="submit" value="Register" />
         </div>
-      }
-      <label>* First Name:</label>
-      <input
-        {...register('firstName', { required: true })}
-        name='firstName'
-        placeholder='First Name'
-        type='text'
-        defaultValue=''
-      // className={`input ${errors.username && 'is-danger'}`}
-      />
-      {errors.firstName?.type === 'required' && 'First name is required'}
-      <label>* Last Name:</label>
-      <input
-        {...register('lastName', { required: true })}
-        name='lastName'
-        placeholder='Last Name'
-        type='text'
-        defaultValue=''
-      // className={`input ${errors.username && 'is-danger'}`}
-      />
-      {errors.lastName?.type === 'required' && 'Last name is required'}
-      <label>* Password:</label>
-      <a>Minumum of 6 characters</a>
-      <input
-        {...register('password', { required: true, minLength: 6 })}
-        name='password'
-        placeholder='Password'
-        type='password'
-        defaultValue=''
-      // className={`input ${errors.username && 'is-danger'}`}
-      />
-      {errors.password?.type === 'required' && 'A password is required'}
-      <label>* Confirm password:</label>
-      <a>Must match the password above!</a>
-      <input
-        {...register('retypePassword', { required: true, minLength: 6 })}
-        name='retypePassword'
-        placeholder='Retype password'
-        type='password'
-        defaultValue=''
-      // className={`input ${errors.username && 'is-danger'}`}
-      />
-      {errors.retypePassword?.type === 'required' && 'Please confirm your password.'}
-      {passwordsDoNotMatch &&
-        <div>
-          <p>Passwords do not match, please try again.</p>
-        </div>
-      }
-      <input type="submit" value="Register" />
-    </form>
-    <Footer /> 
-  </>
+      </form>
+    </div>
+    <Footer />
 
+  </>
 }

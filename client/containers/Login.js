@@ -32,34 +32,40 @@ export default function Login({ history }) {
     <Navbar />
     <h1>Login</h1>
     <p>*: required field</p>
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <label>* Email Address:</label>
-      <input
-        {...register('emailAddress', { required: true })}
-        name='emailAddress'
-        placeholder='Email Address'
-        type='text'
-        defaultValue=''
-      // className={`input ${errors.username && 'is-danger'}`}
-      />
-      {errors.emailAddress?.type === 'required' && 'An email address is required'}
-      <label>* Password:</label>
-      <input
-        {...register('password', { required: true })}
-        name='password'
-        placeholder='Password'
-        type='password'
-        defaultValue=''
-      // className={`input ${errors.username && 'is-danger'}`}
-      />
-      {errors.password?.type === 'required' && 'A password is required'}
-      {showError &&
-        <div>
-          Unable to login - email and/or password are incorrect.
+    <div className="formContainer">
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <label className="label">* Email Address:</label>
+        <input
+          {...register('emailAddress', { required: true })}
+          name='emailAddress'
+          placeholder='Email Address'
+          type='text'
+          defaultValue=''
+          className="input"
+        // className={`input ${errors.username && 'is-danger'}`}
+        />
+        {errors.emailAddress?.type === 'required' && 'An email address is required'}
+        <label className="label">* Password:</label>
+        <input
+          {...register('password', { required: true })}
+          name='password'
+          placeholder='Password'
+          type='password'
+          defaultValue=''
+          className="input"
+        // className={`input ${errors.username && 'is-danger'}`}
+        />
+        {errors.password?.type === 'required' && 'A password is required'}
+        {showError &&
+          <div>
+            Unable to login - email and/or password are incorrect.
+          </div>
+        }
+        <div className="submitButton">
+          <input className="button is-warning" type="submit" value="Login" />
         </div>
-      }
-      <input type="submit" value="Login" />
-    </form>
+      </form>
+    </div>
     <Footer />
   </>
 

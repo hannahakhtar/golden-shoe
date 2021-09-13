@@ -48,7 +48,26 @@ body {
   display: none;
 }
 
+//  Register
 
+.formContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.label {
+  padding-top: 0.5em;
+}
+
+.input {
+  padding: 0.5em;
+}
+
+.submitButton {
+  display: flex;
+  justify-content: center;
+  margin: 0.5em;
+}
 
 // FAQs
 
@@ -104,22 +123,8 @@ body {
 	opacity: 1;
 }
 
-// iPads, Tablets
-// @media only screen and (min-width: 481px) and (max-width: 768px) {
-
-
-  
-// }
-
-
 
 @media only screen and (min-width: 481px) {
-
-    //  navbar
-
-    .navGroupingOne, .navGroupingTwo, .navGroupingThree {
-         display: flex;
-    }
 
     // footer
 
@@ -153,5 +158,10 @@ body {
 // Small screens, laptops
 @media screen and (min-width: 768px) {
 
+   //  navbar
+
+   .navGroupingOne, .navGroupingTwo, .navGroupingThree {
+    display: flex;
+}
 
 }

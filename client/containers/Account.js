@@ -136,11 +136,11 @@ export default function MyAccount() {
     </div>
     <div>
       {showSavedItems &&
-      <div>
-        {savedItems.map((item) => {
-          return item.product.product_name
-        })}
-      </div>
+        <div>
+          {savedItems.map((item) => {
+            return item.product.product_name
+          })}
+        </div>
       }
     </div>
     <div>
@@ -156,45 +156,53 @@ export default function MyAccount() {
       {showUpdateDetails &&
         <div>
           <p>Update your account information here:</p>
-          <form onSubmit={handleSubmit(submitUpdateDetails)}>
-            <label>Email Address:</label>
-            <input
-              {...register('email')}
-              name='email'
-              placeholder='Email Address'
-              type='text'
-              defaultValue={user.email}
-            // className={`input ${errors.username && 'is-danger'}`}
-            />
-            <label>Password:</label>
-            <input
-              {...register('password')}
-              name='password'
-              placeholder='Password'
-              type='password'
-              defaultValue=''
-            // className={`input ${errors.username && 'is-danger'}`}
-            />
-            <label>First Name:</label>
-            <input
-              {...register('first_name')}
-              name='first_name'
-              placeholder='First Name'
-              type='text'
-              defaultValue={user.first_name}
-            // className={`input ${errors.username && 'is-danger'}`}
-            />
-            <label>Last Name:</label>
-            <input
-              {...register('last_name')}
-              name='last_name'
-              placeholder='Last Name'
-              type='text'
-              defaultValue={user.last_name}
-            // className={`input ${errors.username && 'is-danger'}`}
-            />
-            <input type="submit" value="Update Details" />
-          </form>
+          <div className="formContainer">
+            <form onSubmit={handleSubmit(submitUpdateDetails)}>
+              <label className="label">Email Address:</label>
+              <input
+                {...register('email')}
+                name='email'
+                placeholder='Email Address'
+                type='text'
+                defaultValue={user.email}
+                className="input"
+              // className={`input ${errors.username && 'is-danger'}`}
+              />
+              <label className="label">Password:</label>
+              <input
+                {...register('password')}
+                name='password'
+                placeholder='Password'
+                type='password'
+                defaultValue=''
+                className="input"
+              // className={`input ${errors.username && 'is-danger'}`}
+              />
+              <label className="label">First Name:</label>
+              <input
+                {...register('first_name')}
+                name='first_name'
+                placeholder='First Name'
+                type='text'
+                defaultValue={user.first_name}
+                className="input"
+              // className={`input ${errors.username && 'is-danger'}`}
+              />
+              <label className="label">Last Name:</label>
+              <input
+                {...register('last_name')}
+                name='last_name'
+                placeholder='Last Name'
+                type='text'
+                defaultValue={user.last_name}
+                className="input"
+              // className={`input ${errors.username && 'is-danger'}`}
+              />
+              <div className="submitButton">
+                <input className="button is-warning"type="submit" value="Update Details" />
+              </div>
+            </form>
+          </div>
           {updateDetailsResponse}
           <div>
             <p>Be careful, your account will be deleted immediately once you click this!</p>
@@ -207,3 +215,4 @@ export default function MyAccount() {
   </>
 
 }
+

@@ -46,7 +46,9 @@ export default function Navbar({ history }) {
       <a className="navbar-item" href="http://localhost:8001/">
         <img src="../images.Logo.png" width="112" height="28" />
       </a>
-      <a role="button" className={`navbar-burger burger ${isActive ? 'is-active' : ''}`} aria-label="menu" aria-expanded="false" onClick={() => { setisActive(!isActive) }}>
+      <a role="button" className={`navbar-burger burger ${isActive ? 'is-active' : ''}`} aria-label="menu" aria-expanded="false" onClick={() => { 
+        setisActive(!isActive) 
+      }}>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
