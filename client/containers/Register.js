@@ -6,8 +6,6 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 
-// ! validate email address - https://ui.dev/validate-email-address-javascript
-
 export default function Register({ history }) {
   const [passwordsDoNotMatch, setpasswordsDoNotMatch] = useState(false)
   const [emailRegistered, setemailRegistered] = useState(false)

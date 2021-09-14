@@ -182,11 +182,11 @@ export default function Checkout() {
             className="input"
           />
           <div className="submitButton">
-            <input type="submit" value="Apply" />
+            <input className="button is-warning" type="submit" value="Apply" />
           </div>
           <p>Total: </p>
         </form>
-        <button>Place Order</button>
+        <button className="button is-warning">Place Order</button>
       </div>
     </div>
     <Footer />

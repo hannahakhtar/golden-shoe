@@ -5,6 +5,7 @@ import Footer from '../components/Footer'
 import { getLoggedInUserId } from '../lib/auth.js'
 import { useForm } from 'react-hook-form'
 import Header from '../components/Header'
+import ProductCard from '../components/ProductCard'
 
 
 export default function MyAccount() {
@@ -19,7 +20,7 @@ export default function MyAccount() {
   const loggedInUserId = getLoggedInUserId()
   const token = localStorage.getItem('token')
   const { handleSubmit, register } = useForm()
-
+  const moment = require('moment')
 
   useEffect(() => {
     fetchData()
@@ -36,7 +37,6 @@ export default function MyAccount() {
         if (data.errors) {
           console.log(data.errors)
         } else {
-          console.log(data)
           setUser(data)
         }
       } catch (err) {
@@ -54,7 +54,6 @@ export default function MyAccount() {
         if (data.errors) {
           console.log(data.errors)
         } else {
-          console.log('saved items', data)
           setSavedItems(data)
         }
       } catch (err) {
@@ -72,8 +71,7 @@ export default function MyAccount() {
         if (data.errors) {
           console.log(data.errors)
         } else {
-          console.log('this', data[0].products)
-          setOrderHistory(data[0].products)
+          setOrderHistory(data)
         }
       } catch (err) {
         console.log(err)
@@ -107,6 +105,7 @@ export default function MyAccount() {
     }
     return obj
   }
+
   async function submitUpdateDetails(formSubmission) {
     const formData = removeFalsyValues(formSubmission)
     try {
@@ -121,94 +120,175 @@ export default function MyAccount() {
     } catch (err) {
       console.log(err)
     }
+  }
 
+
+  function toggleSavedItems() {
+    if (showSavedItems) {
+      setShowOrderHistory(false)
+      setShowUpdateDetails(false)
+      setShowSavedItems(false)
+    } else {
+      setShowSavedItems(true)
+      setShowOrderHistory(false)
+      setShowUpdateDetails(false)
+    }
+  }
+
+  function toggleOrders() {
+    if (showOrderHistory) {
+      setShowOrderHistory(false)
+      setShowUpdateDetails(false)
+      setShowSavedItems(false)
+    } else {
+      setShowOrderHistory(true)
+      setShowUpdateDetails(false)
+      setShowSavedItems(false)
+    }
+  }
+
+  function toggleAccountDetails() {
+    if (showUpdateDetails) {
+      setShowOrderHistory(false)
+      setShowUpdateDetails(false)
+      setShowSavedItems(false)
+    } else {
+      setShowOrderHistory(false)
+      setShowUpdateDetails(true)
+      setShowSavedItems(false)
+    }
+  }
+
+  async function removeFromWishlist(WishlistItemId, userId) {
+    try {
+      const { data } = await axios.delete(`/api/users/${userId}/wishlist/${WishlistItemId}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      getMySavedItems()
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   return <>
     <Navbar />
     <Header header="My Account" />
-    <div className="maiBody"></div>
-    <p>Welcome back, {user.first_name}!</p>
-    <div>
-      {!showSavedItems && <button onClick={() => setShowSavedItems(true)}>My Saved Items</button>}
-      {showSavedItems && <button onClick={() => setShowSavedItems(false)}>Hide My Saved Items</button>}
-      {!showOrderHistory && <button onClick={() => setShowOrderHistory(true)}>My Orders</button>}
-      {showOrderHistory && <button onClick={() => setShowOrderHistory(false)}>Hide My Orders</button>}
-      {!showUpdateDetails && <button onClick={() => setShowUpdateDetails(true)}>Update My details</button>}
-      {showUpdateDetails && <button onClick={() => setShowUpdateDetails(false)}>Hide My details</button>}
-    </div>
-    <div>
-      {showSavedItems &&
-        <div>
-          {savedItems.map((item) => {
-            return item.product.product_name
-          })}
-        </div>
-      }
-    </div>
-    <div>
-      {showOrderHistory &&
-        <div>
-          {orderHistory.map((order) => {
-            return order.product_name
-          })}
-        </div>
-      }
-    </div>
-    <div>
-      {showUpdateDetails &&
-        <div>
-          <p>Update your account information here:</p>
-          <div className="formContainer">
-            <form onSubmit={handleSubmit(submitUpdateDetails)}>
-              <label className="label">Email Address:</label>
-              <input
-                {...register('email')}
-                name='email'
-                placeholder='Email Address'
-                type='text'
-                defaultValue={user.email}
-                className="input"
-              />
-              <label className="label">Password:</label>
-              <input
-                {...register('password')}
-                name='password'
-                placeholder='Password'
-                type='password'
-                defaultValue=''
-                className="input"
-              />
-              <label className="label">First Name:</label>
-              <input
-                {...register('first_name')}
-                name='first_name'
-                placeholder='First Name'
-                type='text'
-                defaultValue={user.first_name}
-                className="input"
-              />
-              <label className="label">Last Name:</label>
-              <input
-                {...register('last_name')}
-                name='last_name'
-                placeholder='Last Name'
-                type='text'
-                defaultValue={user.last_name}
-                className="input"
-              />
-              <div className="submitButton">
-                <input className="button is-warning" type="submit" value="Update Details" />
-              </div>
-            </form>
-          </div>
-          {updateDetailsResponse}
+    <div className="mainBody">
+      <p className="accountText">Welcome back, {user.first_name}!</p>
+      <div className="accountButtons">
+        {!showSavedItems && <button className="button is-warning" onClick={toggleSavedItems}>My Saved Items</button>}
+        {showSavedItems && <button className="button is-warning" onClick={toggleSavedItems}>Hide My Saved Items</button>}
+        {!showOrderHistory && <button className="button is-warning" onClick={toggleOrders}>My Orders</button>}
+        {showOrderHistory && <button className="button is-warning" onClick={toggleOrders}>Hide My Orders</button>}
+        {!showUpdateDetails && <button className="button is-warning" onClick={toggleAccountDetails}>Update My details</button>}
+        {showUpdateDetails && <button className="button is-warning" onClick={toggleAccountDetails}>Hide My details</button>}
+      </div>
+      <div className="mySavedItemsContainer">
+        {showSavedItems &&
           <div>
-            <button className="button is-danger" onClick={deleteAccount}>Delete Account</button>
-            <p>Be careful, your account will be deleted immediately once you click this!</p>
+            <div className="container">
+              <div className="columns is-multiline is-mobile">
+                {savedItems.map((item, index) => {
+                  return <div key={index} className="column is-one-quarter-desktop is-one-third-tablet is-half-mobile">
+                    <ProductCard
+                      key={index}
+                      productId={item.product.id}
+                      productImage={item.product.product_image}
+                      productName={item.product.product_name}
+                      productPrice={item.product.price}
+                      cardLocation="Saved"
+                      removeFromWishlist={removeFromWishlist}
+                      userId={loggedInUserId}
+                      WishlistItemId={item.id}
+                    />
+                  </div>
+                })}
+              </div>
+            </div>
           </div>
-        </div>
-      }
+        }
+        {showSavedItems && savedItems.length === 0 &&
+          <div>
+            <p>You have no saved items.</p>
+          </div>
+        }
+      </div>
+      <div className="myOrdersContainer">
+        {showOrderHistory &&
+          <div className="ordersCardContainer">
+            {orderHistory.map((order, index) => {
+              return <div key={index} className="column is-one-quarter-desktop is-one-third-tablet is-half-mobile orderCard">
+                <div className="card">
+                  <div className="cardContent">
+                    <p><b>Order Number: {order.id}</b></p>
+                    <p>Ordered on: {moment(order.created_at).format('LLLL')}</p>
+                  </div>
+                </div>
+              </div>
+            })}
+          </div>
+        }
+        {showOrderHistory && orderHistory.length === 0 &&
+          <div>
+            <p>You have no orders to show at the moment.</p>
+          </div>
+        }
+      </div>
+      <div className="myAccountContainer">
+        {showUpdateDetails &&
+          <div className="detailsContainer">
+            <p id="updateAccountText">Update your account information here:</p>
+            <div className="formContainer">
+              <form onSubmit={handleSubmit(submitUpdateDetails)}>
+                <label className="label">Email Address:</label>
+                <input
+                  {...register('email')}
+                  name='email'
+                  placeholder='Email Address'
+                  type='text'
+                  defaultValue={user.email}
+                  className="input"
+                />
+                <label className="label">Password:</label>
+                <input
+                  {...register('password')}
+                  name='password'
+                  placeholder='Password'
+                  type='password'
+                  defaultValue=''
+                  className="input"
+                />
+                <label className="label">First Name:</label>
+                <input
+                  {...register('first_name')}
+                  name='first_name'
+                  placeholder='First Name'
+                  type='text'
+                  defaultValue={user.first_name}
+                  className="input"
+                />
+                <label className="label">Last Name:</label>
+                <input
+                  {...register('last_name')}
+                  name='last_name'
+                  placeholder='Last Name'
+                  type='text'
+                  defaultValue={user.last_name}
+                  className="input"
+                />
+                <div className="submitButton">
+                  <input className="button is-warning" type="submit" value="Update Details" />
+                </div>
+              </form>
+            </div>
+            {updateDetailsResponse}
+            <div className="deleteAccount">
+              <button className="button is-danger" onClick={deleteAccount}>Delete Account</button>
+              <p>Be careful, your account will be deleted immediately once you click this!</p>
+            </div>
+          </div>
+        }
+      </div>
     </div>
     <Footer />
   </>

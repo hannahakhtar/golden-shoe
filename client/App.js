@@ -23,16 +23,15 @@ const App = () => (
       <Route exact path="/products" component={Products} />
       <Route exact path="/not-found" component={NotFound} />
       <Route exact path="/products/:productId" component={ProductSpotlight} />
-      <Route exact path="/returns" component={Returns}/>
-      <Route exact path="/faqs" component={FAQs}/>
-      <Route exact path="/my-account" component={Account}/>
-      <Route exact path="/contact-us" component={ContactUs}/>
-      <Route exact path="/my-basket" component={Basket}/>
-      <Route exact path="/checkout" component={Checkout}/>
-
-      <Redirect to="/not-found"/>
+      <Route exact path="/returns" component={Returns} />
+      <Route exact path="/faqs" component={FAQs} />
+      <Route exact path="/my-account" component={Account} />
+      <Route exact path="/contact-us" component={ContactUs} />
+      <Route exact path="/my-basket" component={Basket} />
+      <Route exact path="/checkout" component={Checkout} />
+      <Redirect to="/not-found" />
     </Switch>
   </BrowserRouter>
 )
 
-export default App  
+export default App

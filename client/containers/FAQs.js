@@ -4,9 +4,6 @@ import Footer from '../components/Footer'
 import FAQComponent from '../components/FAQcomponent'
 import Header from '../components/Header'
 
-// ! https://github.com/TylerPottsDev/react-accordion/blob/master/src/App.js
-// ! fix background image in component
-
 export default function FAQs() {
 
   const [faqs, setFaqs] = useState([

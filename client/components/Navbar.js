@@ -3,14 +3,11 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { getLoggedInUserId } from '../lib/auth.js'
 
-
-
 export default function Navbar({ history }) {
-
-  // ! add in logo to Navbar
 
   const [loggedIn, updateLoggedIn] = useState(false)
   const [isActive, setisActive] = useState(false)
+  
   const loggedInUserId = getLoggedInUserId()
   const token = localStorage.getItem('token')
 
@@ -44,7 +41,7 @@ export default function Navbar({ history }) {
   return <div className="navbar" role="navigation" aria-label="main navigation">
     <div className="navbar-brand">
       <a className="navbar-item" href="http://localhost:8001/">
-        <img src="../images.Logo.png" width="112" height="28" />
+        <img src="https://res.cloudinary.com/da3rlixzz/image/upload/v1631614445/Screenshot_2021-09-09_at_14.54.36_yiklnr.png" width="112" height="28" />
       </a>
       <a role="button" className={`navbar-burger burger ${isActive ? 'is-active' : ''}`} aria-label="menu" aria-expanded="false" onClick={() => { 
         setisActive(!isActive) 

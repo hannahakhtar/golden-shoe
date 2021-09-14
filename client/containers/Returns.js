@@ -13,13 +13,7 @@ export default function Returns() {
   const [showRecieved, setShowRecieved] = useState(false)
   const reasonsArray = ['Other', 'Doesn\'t fit', 'Shoe colour', 'Faulty', 'Quality not as expected']
 
-  // ! cannot submit until order number, product ID and reason (value cannot be "") have been selected - error shows if this is issue
-  // ! when new input is added, remove all the previous data
-  // ! one product minimum
-
   async function onSubmit(data) {
-    console.log('Order number: ', orderNumber)
-    console.log('Product IDs and reason for return', data)
     setShowRecieved(true)
   }
 
@@ -30,7 +24,6 @@ export default function Returns() {
   function removeProductInput() {
     const currentArrayOfReturns = [...returns]
     const removeLastIndex = currentArrayOfReturns.pop()
-    console.log(removeLastIndex)
     setReturns(currentArrayOfReturns)
   }
 
@@ -82,14 +75,12 @@ export default function Returns() {
             </select>
           </div>
         })}
-        <div className="submitButton">
+        <div className="returnButtons">
+          <button className="button is-warning" onClick={addProductInput}>Add another product</button>
+          <button className="button is-warning" onClick={removeProductInput}>Remove last product</button>
           <input className="button is-warning" type="submit" value="Submit Return Details" onSubmit={onSubmit} />
         </div>
       </form>
-      <div className="returnsButtons">
-        <button className="button is-warning returnsButtons" onClick={addProductInput}>Add another product</button>
-        <button className="button is-warning returnsButtons" onClick={removeProductInput}>Remove last product</button>
-      </div>
     </div>
     <Footer />
   </>

@@ -11,14 +11,13 @@ export default function Footer() {
     <footer className="footer">
       <div className="footerLinks">
         <Link to='/'><p>Home</p></Link>
-        {loggedInUserId ?
-          <Link to='/my-account'><p>My Account</p></Link>
-          :
+        {!loggedInUserId &&
           <div>
             <Link to='/register'><p>Register</p></Link>
             <Link to='/login'><p>Login</p></Link>
           </div>
         }
+        <Link to='/products'><p>Products</p></Link>
         <Link to='/faqs'><p>FAQs</p></Link>
         <Link to='/contact-us'><p>Contact Us</p></Link>
       </div>
@@ -34,7 +33,7 @@ export default function Footer() {
         <a href="https://www.instagram.com/" target="_blank" rel="noreferrer"><img src='https://res.cloudinary.com/da3rlixzz/image/upload/v1631389625/AND%20DIgital/Instagram_oopboi.png' alt="Instagram Logo" /></a>
         <a href="https://twitter.com/" target="_blank" rel="noreferrer"><img src='https://res.cloudinary.com/da3rlixzz/image/upload/v1631389618/AND%20DIgital/Twitter_nxohqf.png' alt="Twitter Logo" /></a>
       </div>
-    </footer>
-  </div>
+    </footer >
+  </div >
 
 }

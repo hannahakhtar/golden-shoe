@@ -14,9 +14,44 @@ body {
 .mainBody {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   align-items: center;
   min-height: 80vh;
 }
+
+.homeBody {
+  display: flex;
+  flex-direction: column;
+  min-height: 80vh;
+}
+
+.hero-body {
+  text-align: center;
+}
+
+.title {
+  padding: 1em;
+}
+
+.campaigns {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 2em;
+}
+
+.campaignContainer {
+  width: 40%;
+  background-color: green;
+  padding-top: 10em;
+  padding-bottom: 10em;
+}
+
+.campaign {
+  text-align: center;
+  color: white;
+  height: 20px;
+}
+
 // Navbar and footer
 
 .navbar, .footer {
@@ -62,6 +97,79 @@ body {
   text-align: center;
 }
 
+// Login 
+
+.loginBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+// Product card 
+
+.bm--card-equal-height {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.cardContent {
+  display: flex;
+  justify-content: center;
+  padding: 2em;
+  gap: 2em;
+}
+
+// Products
+
+.productDisplay {
+  margin: 2em;
+}
+
+.searchButtonsAndCategory {
+  margin-top: 0.5em;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 1em;
+}
+
+#categoryOptions {
+  height: 3em;
+}
+
+.productsSearchForm {
+  margin-top: 2em;;
+  margin-bottom: 1.5em;
+}
+
+// Product Spotlight
+
+.productSpotlightContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 4em;
+  gap: 2em;
+  align-items: center;
+}
+
+.productDescription {
+  text-align: center;
+
+}
+
+.stockLevels {
+  color: red;
+  font-weight: bold;
+}
+
+.spotlightText {
+  padding: 0.5em;
+}
+
+
 //  Forms
 
 .formContainer {
@@ -86,6 +194,43 @@ body {
   display: flex;
   justify-content: center;
   margin: 0.5em;
+}
+
+// My Account
+
+.accountText {
+  font-size: 2em;
+  margin: 2em;
+}
+
+.accountButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.deleteAccount {
+  display: flex;
+  flex-direction: column;
+  margin: 2em;
+  gap: 1em;
+}
+
+#updateAccountText {
+  margin: 1em;
+  text-align: center;
+}
+
+.detailsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }
 
 // FAQs
@@ -144,12 +289,21 @@ body {
 
 // Returns
 
-.returnsButtons {
-  margin: 0.25em;
+.returnButtons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1em;
+  margin: 1em;
 }
 
-returnsForm {
+#returnsForm {
   margin: 1em;
+}
+
+.ordersCardContainer {
+  display: flex;
+  flex-direction: row;
 }
 
 @media only screen and (min-width: 481px) {
@@ -180,6 +334,27 @@ returnsForm {
       justify-content: flex-start;
     }
 
+    .socialMediaSharing {
+      border-style: dotted;
+    }
+
+    .wishListToggle {
+      margin: 1em;
+    }
+
+    // My Account
+
+    .accountButtons {
+      flex-direction: row;
+    }
+
+    .productSpotlightContainer {
+      display: flex;
+      flex-direction: row;
+      margin: 4em;
+      gap: 2em;
+    }
+
 }
 
 
@@ -188,8 +363,15 @@ returnsForm {
 
    //  navbar
 
-   .navGroupingOne, .navGroupingTwo, .navGroupingThree {
+    .navGroupingOne, .navGroupingTwo, .navGroupingThree {
     display: flex;
 }
+
+    // Products
+
+    .returnButtons {
+      display: flex;
+      flex-direction: row;
+    }
 
 }

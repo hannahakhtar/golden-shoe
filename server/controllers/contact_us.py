@@ -10,7 +10,6 @@ router = Blueprint('contact_us', __name__)
 @router.route('/contact-us', methods=["POST"])
 def post_comment():
     contact_dict = request.json
-    print('submission', contact_dict)
     try: 
         comment_to_add = contact_us_schema.load(contact_dict)
     

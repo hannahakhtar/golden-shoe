@@ -25,6 +25,7 @@ export default function Login({ history }) {
         setShowError(true)
       }
     } catch (err) {
+      setShowError(true)
       console.log(err.response.data)
     }
   }
@@ -32,8 +33,7 @@ export default function Login({ history }) {
   return <>
     <Navbar />
     <Header header="Login" />
-    <div className="mainBody">
-
+    <div className="loginBody">
       <p>*: required field</p>
       <div className="formContainer">
         <form onSubmit={handleSubmit(onSubmit)}>

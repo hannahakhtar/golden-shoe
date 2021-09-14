@@ -11,7 +11,6 @@ def test_get_all_order_history():
         "/api/users/1/orders",
         headers=request_headers,
         )
-    print(response.json)
     assert len(response.json) == 2
     assert response.status_code == 200
 
