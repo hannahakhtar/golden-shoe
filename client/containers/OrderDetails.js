@@ -45,7 +45,7 @@ export default function OrderDetails({ location }) {
         <p>{error}</p>
       }
       <div>
-        <div className="container">
+        <div className=" orderDetailsContainer">
           <div className="columns is-multiline is-mobile">
             {orderDetails.map((item, index) => {
               return <div key={index} className="column is-one-quarter-desktop is-one-third-tablet is-half-mobile">

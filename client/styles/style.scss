@@ -233,6 +233,10 @@ body {
   text-align: center;
 }
 
+.mySavedItemsContainer {
+  margin: 3em;
+}
+
 // FAQs
 
 .faqs {
@@ -304,6 +308,14 @@ body {
 .ordersCardContainer {
   display: flex;
   flex-direction: row;
+}
+
+.orderDetailsContainer {
+  margin: 3em;
+}
+
+.card-footer {
+  margin: 0 auto
 }
 
 @media only screen and (min-width: 481px) {
