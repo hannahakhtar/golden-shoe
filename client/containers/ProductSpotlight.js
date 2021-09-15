@@ -71,7 +71,7 @@ export default function ProductSpotlight({ match }) {
   if (product.stock_level < 6 && product.stock_level > 0) {
     showRemainingStock =
       <p className="stockLevels">
-        Quick, there are only {product.stock_level} remaining.
+        Quick, there are only {product.stock_level} left in stock.
       </p>
   }
 
@@ -87,7 +87,7 @@ export default function ProductSpotlight({ match }) {
     <div className="mainBody">
       <div className="productSpotlightContainer">
         <div>
-          <img src={product.product_image} alt={`${product.product_name} image`} />
+          <img className="productImages" src={product.product_image} alt={`${product.product_name} image`} />
         </div>
         <div className="productDescription">
           {showRemainingStock}
