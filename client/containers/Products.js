@@ -50,7 +50,7 @@ export default function Products() {
   let displayProducts
 
   function clearFilters() {
-    setProductsToDisplay(allProducts)
+    getAllProducts()
   }
 
   if (productsToDisplay.length > 0) {
