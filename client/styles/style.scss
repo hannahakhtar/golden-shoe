@@ -17,6 +17,7 @@ body {
   justify-content: space-around;
   align-items: center;
   min-height: 80vh;
+  padding: 2em;
 }
 
 .homeBody {
@@ -315,6 +316,14 @@ body {
 
 .card-footer {
   margin: 0 auto
+}
+
+.checkoutText {
+  text-align: center;
+}
+
+.paymentForm {
+  margin: 2em;
 }
 
 @media only screen and (min-width: 481px) {

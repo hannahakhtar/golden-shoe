@@ -25,7 +25,7 @@ export default function Checkout() {
         <div className="formContainer">
           <form onSubmit={handleSubmit(onCheckoutSubmit)}>
             <div>
-              <h3>Shipping</h3>
+              <h3 className="checkoutText">Shipping</h3>
               <label className="label">* First Name:</label>
               <input
                 {...register('firstName', { required: true })}
@@ -118,8 +118,8 @@ export default function Checkout() {
               />
               {errors.phoneNumber?.type === 'required' && 'A phone number is required'}
             </div>
-            <div>
-              <h3>Payment</h3>
+            <div className="paymentForm">
+              <h3 className="checkoutText">Payment</h3>
               <p>We only take payment by credit/debit card currently.</p>
               <label className="label">* Card Number:</label>
               <input
@@ -162,16 +162,16 @@ export default function Checkout() {
               />
               {errors.postCode?.type === 'required' && 'A post code is required and needs to be either 3 or 4 digits long'}
             </div>
-            <div className="submitButton">
-              <input className="button is-warning" type="submit" value="Place Order" />
-            </div>
+            {/* <div className="submitButton">
+              <input className="button is-warning" type="submit" value="Save" />
+            </div> */}
           </form>
         </div>
       </div>
       <div>
-        <h3>Order summary</h3>
-        <p>Subtotal: </p>
-        <p>Shipping: £3</p>
+        <h3 className="checkoutText">Order summary</h3>
+        <p className="checkoutText">Subtotal: </p>
+        <p className="checkoutText"> Shipping: £3</p>
         <form onSubmit={handleSubmit(onDiscountSubmit)}>
           <input
             {...register('discountCode')}
@@ -184,9 +184,9 @@ export default function Checkout() {
           <div className="submitButton">
             <input className="button is-warning" type="submit" value="Apply" />
           </div>
-          <p>Total: </p>
+          <p className="checkoutText">Total: </p>
         </form>
-        <button className="button is-warning">Place Order</button>
+        <button className="button is-warning card-footer">Place Order</button>
       </div>
     </div>
     <Footer />
