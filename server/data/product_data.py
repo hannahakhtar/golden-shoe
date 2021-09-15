@@ -17,7 +17,7 @@ list_product = [
     ),
     Product(
         product_name="White Trainers",
-        product_image="https://i.ibb.co/0YkH1Px/pumatrainers.jpg",
+        product_image="https://res.cloudinary.com/da3rlixzz/image/upload/v1631655367/AND%20DIgital/white_trainers_tx3oj1.webp",
         outer_material="Suede",
         inner_material="Polyester",
         sole="Rubber",
@@ -31,7 +31,7 @@ list_product = [
     ),
      Product(
         product_name="Smart Shoes",
-        product_image="https://i.ibb.co/0YkH1Px/pumatrainers.jpg",
+        product_image="https://res.cloudinary.com/da3rlixzz/image/upload/v1631655308/AND%20DIgital/black_shoes_ayvwq6.webp",
         outer_material="Leather",
         inner_material="An inner material",
         sole="Rubber",
@@ -45,7 +45,7 @@ list_product = [
     ),
     Product(
         product_name="Smart Shoes",
-        product_image="https://i.ibb.co/0YkH1Px/pumatrainers.jpg",
+        product_image="https://res.cloudinary.com/da3rlixzz/image/upload/v1631655308/AND%20DIgital/black_shoes_ayvwq6.webp",
         outer_material="Leather",
         inner_material="An inner material",
         sole="Rubber",
@@ -59,7 +59,7 @@ list_product = [
     ),
     Product(
         product_name="Casual Shoes",
-        product_image="https://i.ibb.co/0YkH1Px/pumatrainers.jpg",
+        product_image="https://res.cloudinary.com/da3rlixzz/image/upload/v1631655517/AND%20DIgital/Men_s_Wool_Runners_-_Natural_Grey__Light_Grey_Sole__-_imageAngle_oiiwns.jpg",
         outer_material="Leather",
         inner_material="An inner material",
         sole="Rubber",
@@ -73,7 +73,7 @@ list_product = [
     ),
     Product(
         product_name="Casual Shoes",
-        product_image="https://i.ibb.co/0YkH1Px/pumatrainers.jpg",
+        product_image="https://res.cloudinary.com/da3rlixzz/image/upload/v1631655625/AND%20DIgital/BALAD-0272510590005511_Side_tbdmah.webp",
         outer_material="Leather",
         inner_material="An inner material",
         sole="Rubber",
@@ -87,7 +87,7 @@ list_product = [
     ),
     Product(
         product_name="White Slippers",
-        product_image="https://i.ibb.co/0YkH1Px/pumatrainers.jpg",
+        product_image="https://res.cloudinary.com/da3rlixzz/image/upload/v1631655722/AND%20DIgital/shopping_ip5dzi.webp",
         outer_material="Fur",
         inner_material="Fur",
         sole="Rubber",
@@ -101,7 +101,7 @@ list_product = [
     ),
     Product(
         product_name="Black Sandals",
-        product_image="https://i.ibb.co/0YkH1Px/pumatrainers.jpg",
+        product_image="https://res.cloudinary.com/da3rlixzz/image/upload/v1631655743/AND%20DIgital/US_01_252051_00_j8rgtu.jpg",
         outer_material="Suede",
         inner_material="Suede",
         sole="Rubber",
@@ -115,7 +115,7 @@ list_product = [
     ),
     Product(
         product_name="Black Sandals",
-        product_image="https://i.ibb.co/0YkH1Px/pumatrainers.jpg",
+        product_image="https://res.cloudinary.com/da3rlixzz/image/upload/v1631655768/AND%20DIgital/GUEST_00069480-d01c-4c1c-b245-e03ff3a0aa23_bbpobf.jpg",
         outer_material="Suede",
         inner_material="Suede",
         sole="Rubber",
@@ -129,7 +129,7 @@ list_product = [
     ),
     Product(
         product_name="Black Sandals",
-        product_image="https://i.ibb.co/0YkH1Px/pumatrainers.jpg",
+        product_image="https://res.cloudinary.com/da3rlixzz/image/upload/v1631655895/AND%20DIgital/UK53_A_SL_2_SS21_001_Portrait.jpg_f6urfh.jpg",
         outer_material="Suede",
         inner_material="Suede",
         sole="Rubber",
@@ -143,7 +143,7 @@ list_product = [
     ),
     Product(
         product_name="Pink Trainers",
-        product_image="https://i.ibb.co/0YkH1Px/pumatrainers.jpg",
+        product_image="https://res.cloudinary.com/da3rlixzz/image/upload/v1631655800/AND%20DIgital/23322057-4_etzq5f.jpg",
         outer_material="Suede",
         inner_material="Polyester",
         sole="Rubber",
@@ -155,10 +155,9 @@ list_product = [
         stock_level=34,
         gender="Women's"
     ),
-
     Product(
         product_name="Pink Trainers",
-        product_image="https://i.ibb.co/0YkH1Px/pumatrainers.jpg",
+        product_image="https://res.cloudinary.com/da3rlixzz/image/upload/v1631655861/AND%20DIgital/Clyde_Pink_Trainer_1024x683_2_ac1e9aca-edfb-496b-929a-202ac7f31c2e_1024x_b00zev.jpg",
         outer_material="Suede",
         inner_material="Polyester",
         sole="Rubber",
@@ -171,14 +170,14 @@ list_product = [
         gender="Women's"
     ),
     Product(
-        product_name="Pink Trainers",
-        product_image="https://i.ibb.co/0YkH1Px/pumatrainers.jpg",
+        product_name="Blue Trainers",
+        product_image="https://res.cloudinary.com/da3rlixzz/image/upload/v1631656340/AND%20DIgital/ac4012c19-f60f-4d80-b13d-73f676e50a44_1000_category_hvfgtw.jpg",
         outer_material="Suede",
         inner_material="Polyester",
         sole="Rubber",
         shoe_width="Normal",
         size="9",
-        description="Pink Puma trainers",
+        description="Blue Puma trainers",
         category="Sports",
         price=60.00,
         stock_level=34,
@@ -186,7 +185,7 @@ list_product = [
     ),
     Product(
         product_name="Smart Shoes",
-        product_image="https://i.ibb.co/0YkH1Px/pumatrainers.jpg",
+        product_image="https://res.cloudinary.com/da3rlixzz/image/upload/v1631656376/AND%20DIgital/smart-shoes-men_cvqt1d.jpg",
         outer_material="Leather",
         inner_material="An inner material",
         sole="Rubber",
@@ -200,7 +199,7 @@ list_product = [
     ),
     Product(
         product_name="Casual Shoes",
-        product_image="https://i.ibb.co/0YkH1Px/pumatrainers.jpg",
+        product_image="https://res.cloudinary.com/da3rlixzz/image/upload/v1631656004/AND%20DIgital/Mikarause-White-Casual-Shoes-Men-Leather-Sneakers-Male-Comfort-Sport-Running-Sneaker-Man-Tenis-mocassin-Fashion.jpg_Q90.jpg__oheyoy.jpg",
         outer_material="Leather",
         inner_material="An inner material",
         sole="Rubber",
@@ -214,7 +213,7 @@ list_product = [
     ),
     Product(
         product_name="Casual Shoes",
-        product_image="https://i.ibb.co/0YkH1Px/pumatrainers.jpg",
+        product_image="https://res.cloudinary.com/da3rlixzz/image/upload/v1631656050/AND%20DIgital/151518822-112140090-1607085783_mlrfqm.jpg",
         outer_material="Leather",
         inner_material="An inner material",
         sole="Rubber",
@@ -228,7 +227,7 @@ list_product = [
     ),
     Product(
         product_name="Green Slippers",
-        product_image="https://i.ibb.co/0YkH1Px/pumatrainers.jpg",
+        product_image="https://res.cloudinary.com/da3rlixzz/image/upload/v1631656079/AND%20DIgital/bu4wbjsQrWOJGGiZelkp_Kip_2BCo_AW21_DAYONE_PRODUCT_0396_fsdtnf.jpg",
         outer_material="Fur",
         inner_material="Fur",
         sole="Rubber",
@@ -242,7 +241,7 @@ list_product = [
     ),
     Product(
         product_name="Green Slippers",
-        product_image="https://i.ibb.co/0YkH1Px/pumatrainers.jpg",
+        product_image="https://res.cloudinary.com/da3rlixzz/image/upload/v1631656079/AND%20DIgital/bu4wbjsQrWOJGGiZelkp_Kip_2BCo_AW21_DAYONE_PRODUCT_0396_fsdtnf.jpg",
         outer_material="Fur",
         inner_material="Fur",
         sole="Rubber",
@@ -256,7 +255,7 @@ list_product = [
     ),
     Product(
         product_name="Lovely Sandals",
-        product_image="https://i.ibb.co/0YkH1Px/pumatrainers.jpg",
+        product_image="https://res.cloudinary.com/da3rlixzz/image/upload/v1631656140/AND%20DIgital/71ohkUA58yL._SL1500__ewhnmm.jpg",
         outer_material="Leather",
         inner_material="Leather",
         sole="Rubber",
@@ -268,9 +267,9 @@ list_product = [
         stock_level=6,
         gender="Women's"
     ),
-        Product(
+    Product(
         product_name="Lovely Sandals",
-        product_image="https://i.ibb.co/0YkH1Px/pumatrainers.jpg",
+        product_image="https://res.cloudinary.com/da3rlixzz/image/upload/v1631656220/AND%20DIgital/sandals-1622127128.jpg_hdfaj7.jpg",
         outer_material="Leather",
         inner_material="Leather",
         sole="Rubber",
@@ -282,9 +281,9 @@ list_product = [
         stock_level=7,
         gender="Women's"
     ),
-        Product(
+    Product(
         product_name="High Heels",
-        product_image="https://i.ibb.co/0YkH1Px/pumatrainers.jpg",
+        product_image="https://res.cloudinary.com/da3rlixzz/image/upload/v1631655933/AND%20DIgital/5515750_1059682_npwfg1.jpg",
         outer_material="Leather",
         inner_material="Leather",
         sole="Rubber",
@@ -296,9 +295,9 @@ list_product = [
         stock_level=7,
         gender="Women's"
     ),
-        Product(
+    Product(
         product_name="High Heels",
-        product_image="https://i.ibb.co/0YkH1Px/pumatrainers.jpg",
+        product_image="https://res.cloudinary.com/da3rlixzz/image/upload/v1631656244/AND%20DIgital/b62fa565-e0a4-4915-9b9b-ecf9020cb280-XXX_148237273_npnr3p.jpg",
         outer_material="Leather",
         inner_material="Leather",
         sole="Rubber",
@@ -310,9 +309,9 @@ list_product = [
         stock_level=3,
         gender="Women's"
     ),
-        Product(
+    Product(
         product_name="Quality Pumps",
-        product_image="https://i.ibb.co/0YkH1Px/pumatrainers.jpg",
+        product_image="https://res.cloudinary.com/da3rlixzz/image/upload/v1631656287/AND%20DIgital/SFQSHUP-Women-s-Shoes-Genuine-Leather-Oxford-Mother-Girls-Lace-Up-Fashion-Casual-Shoes-Women-Sneakers__37423.1546426572_z5hetg.jpg",
         outer_material="Leather",
         inner_material="Leather",
         sole="Rubber",
@@ -324,9 +323,9 @@ list_product = [
         stock_level=63,
         gender="Women's"
     ),
-        Product(
+    Product(
         product_name="Quality Pumps",
-        product_image="https://i.ibb.co/0YkH1Px/pumatrainers.jpg",
+        product_image="https://res.cloudinary.com/da3rlixzz/image/upload/v1631656314/AND%20DIgital/55f87f82-e0dd-4102-ace8-d367e73b2d8c_wkrc5f.jpg",
         outer_material="Leather",
         inner_material="Leather",
         sole="Rubber",

@@ -62,7 +62,7 @@ export default function Navbar({ history }) {
           <div className="navGroupingTwo">
             <Link className='button navbar-item' to='/my-account'>My Account</Link>
             <Link className='button navbar-item' to='/my-basket'>Basket</Link>
-            <Link className='button navbar-item' onClick={logOut}>Log Out</Link>
+            <a className='button navbar-item' onClick={logOut}>Log Out</a>
           </div>
           :
           <div className="navGroupingThree">

@@ -13,6 +13,7 @@ import Account from './containers/Account'
 import ContactUs from './containers/ContactUs'
 import Basket from './containers/Basket'
 import Checkout from './containers/Checkout'
+import OrderDetails from './containers/orderDetails'
 
 const App = () => (
   <BrowserRouter>
@@ -29,6 +30,7 @@ const App = () => (
       <Route exact path="/contact-us" component={ContactUs} />
       <Route exact path="/my-basket" component={Basket} />
       <Route exact path="/checkout" component={Checkout} />
+      <Route exact path="/order-details/:orderId" component={OrderDetails} />
       <Redirect to="/not-found" />
     </Switch>
   </BrowserRouter>

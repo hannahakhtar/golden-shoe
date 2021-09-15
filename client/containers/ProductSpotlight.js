@@ -7,6 +7,7 @@ import Header from '../components/Header'
 import axios from 'axios'
 import { getLoggedInUserId } from '../lib/auth.js'
 
+
 export default function ProductSpotlight({ match }) {
 
   const productId = match.params.productId

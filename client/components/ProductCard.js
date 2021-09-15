@@ -5,7 +5,7 @@ export default function ProductCard({ productId, productImage, productName, prod
   return <div className="card bm--card-equal-height">
     <div className="card-image">
       <figure className="image is-4by3">
-        <a href={`/products/${productId}`}><img src={productImage} alt={`${productName} image`} /></a>
+        <a href={`/products/${productId}`}><img src={productImage} alt={`${productName} image`}/></a>
       </figure>
     </div>
     <div className="cardContent">

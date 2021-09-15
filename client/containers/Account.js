@@ -3,6 +3,7 @@ import axios from 'axios'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import { getLoggedInUserId } from '../lib/auth.js'
+import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import Header from '../components/Header'
 import ProductCard from '../components/ProductCard'
@@ -218,12 +219,17 @@ export default function MyAccount() {
           <div className="ordersCardContainer">
             {orderHistory.map((order, index) => {
               return <div key={index} className="column is-one-quarter-desktop is-one-third-tablet is-half-mobile orderCard">
-                <div className="card">
-                  <div className="cardContent">
-                    <p><b>Order Number: {order.id}</b></p>
-                    <p>Ordered on: {moment(order.created_at).format('LLLL')}</p>
+                <Link to={{
+                  pathname: `/order-details/${order.id}`,
+                  state: { orderId: order.id }
+                }}>
+                  <div className="card">
+                    <div className="cardContent">
+                      <p><b>Order Number: {order.id}</b></p>
+                      <p>Ordered on: {moment(order.created_at).format('LLLL')}</p>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </div>
             })}
           </div>

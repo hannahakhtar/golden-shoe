@@ -1,25 +1,19 @@
 import React from 'react'
-import { useHistory, Link } from 'react-router-dom'
-import { getLoggedInUserId } from '../lib/auth.js'
+import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import Header from '../components/Header'
 
 export default function NotFound() {
 
-  const loggedIn = getLoggedInUserId()
-  const history = useHistory()
-
   return <>
-      <Navbar />
-    <div className="hero is-fullheight-with-navbar">
+    <Navbar />
+    <Header header="Oops!" />
+    <div className="mainBody">
       <div>
-        <div className="container pt-5 pb-5 px-4 display-no-search-results">
-          <h1 className="no-search-results">Oops!</h1>
-          <p className="no-search-results">Your page was not found...</p>
-          <br />
-          {!loggedIn && <Link className="button is-primary" to={'/'}>Register or Login</Link>}
-          {loggedIn && <button className="button is-primary" onClick={() => history.goBack()}>Go back</button>}
-        </div>
+        <p className="no-search-results"><b>Your page was not found...</b></p>
+        <br />
+        <Link className="button is-warning" to={'/'}>Back to home</Link>
       </div>
     </div>
     <Footer />
